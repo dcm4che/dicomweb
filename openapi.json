@@ -160,7 +160,7 @@
             "in": "query",
             "description": "The Acceptable Media Types for the response payload.",
             "schema": {
-              "$ref": "#/components/schemas/dicom-media-type"
+              "$ref": "#/components/schemas/rendered-media-type"
             }
           },
           {
