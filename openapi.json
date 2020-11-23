@@ -1492,7 +1492,7 @@
   },
   "components": {
     "parameters": {
-      "charset-hp": {
+      "charset-qp": {
         "name": "charset",
         "in": "query",
         "description": "Comma-separated list of Acceptable Character Sets of the response payload.",
@@ -1500,7 +1500,7 @@
           "type": "string"
         }
       },
-      "charset-qp": {
+      "charset-hp": {
         "name": "Accept-Charset",
         "in": "header",
         "description": "The Acceptable Character Sets of the response payload.",
