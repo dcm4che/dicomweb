@@ -53,7 +53,7 @@
             "description": "The Acceptable Media Types for the response payload.",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/dicom-media-type+wc"
+              "$ref": "#/components/schemas/dicom-media-type-wc"
             }
           },
           {
@@ -132,7 +132,7 @@
             "description": "The Acceptable Media Types for the response payload.",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/rendered-media-type+wc"
+              "$ref": "#/components/schemas/rendered-media-type-wc"
             }
           },
           {
@@ -1522,7 +1522,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/search-media-type+wc"
+          "$ref": "#/components/schemas/search-media-type-wc"
         }
       },
       "retrieve-accept-qp": {
@@ -1539,7 +1539,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/retrieve-media-type+wc"
+          "$ref": "#/components/schemas/retrieve-media-type-wc"
         }
       },
       "rendered-accept-qp": {
@@ -1556,7 +1556,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/rendered-media-type+wc"
+          "$ref": "#/components/schemas/rendered-media-type-wc"
         }
       },
       "thumbnail-accept-qp": {
@@ -1573,7 +1573,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/thumbnail-media-type+wc"
+          "$ref": "#/components/schemas/thumbnail-media-type-wc"
         }
       },
       "frames-accept-qp": {
@@ -1590,7 +1590,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/frames-media-type+wc"
+          "$ref": "#/components/schemas/frames-media-type-wc"
         }
       },
       "bulkdata-accept-qp": {
@@ -1607,7 +1607,7 @@
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/bulkdata-media-type+wc"
+          "$ref": "#/components/schemas/bulkdata-media-type-wc"
         }
       },
       "study": {
@@ -1827,11 +1827,11 @@
           "application/dicom"
         ]
       },
-      "dicom-media-type+wc": {
+      "dicom-media-type-wc": {
         "type": "string",
         "enum": [
-          "application/dicom",
-          "*/*"
+          "*/*",
+          "application/dicom"
         ]
       },
       "search-media-type": {
@@ -1841,12 +1841,12 @@
           "application/dicom+json"
         ]
       },
-      "search-media-type+wc": {
+      "search-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "multipart/related;type=\"application/dicom+xml\"",
-          "application/dicom+json",
-          "*/*"
+          "application/dicom+json"
         ]
       },
       "rendered-media-type": {
@@ -1866,9 +1866,10 @@
           "application/pdf"
         ]
       },
-      "rendered-media-type+wc": {
+      "rendered-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "image/jpeg",
           "image/gif",
           "image/png",
@@ -1880,8 +1881,7 @@
           "text/plain",
           "text/xml",
           "text/rtf",
-          "application/pdf",
-          "*/*"
+          "application/pdf"
         ]
       },
       "thumbnail-media-type": {
@@ -1892,13 +1892,13 @@
           "image/png"
         ]
       },
-      "thumbnail-media-type+wc": {
+      "thumbnail-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "image/jpeg",
           "image/gif",
-          "image/png",
-          "*/*"
+          "image/png"
         ]
       },
       "retrieve-media-type": {
@@ -1917,9 +1917,10 @@
           "multipart/related;type=\"application/pdf\""
         ]
       },
-      "retrieve-media-type+wc": {
+      "retrieve-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "multipart/related;type=\"application/dicom\"",
           "multipart/related;type=\"application/octet-stream\"",
           "multipart/related;type=\"image/jpeg\"",
@@ -1930,8 +1931,7 @@
           "multipart/related;type=\"video/mpeg\"",
           "multipart/related;type=\"video/mp4\"",
           "multipart/related;type=\"text/xml\"",
-          "multipart/related;type=\"application/pdf\"",
-          "*/*"
+          "multipart/related;type=\"application/pdf\""
         ]
       },
       "frames-media-type": {
@@ -1947,9 +1947,10 @@
           "video/mp4"
         ]
       },
-      "frames-media-type+wc": {
+      "frames-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "application/octet-stream",
           "image/jpeg",
           "image/jls",
@@ -1957,8 +1958,7 @@
           "image/jpx",
           "image/dicom-rle",
           "video/mpeg",
-          "video/mp4",
-          "*/*"
+          "video/mp4"
         ]
       },
       "bulkdata-media-type": {
@@ -1973,13 +1973,13 @@
           "video/mpeg",
           "video/mp4",
           "text/xml",
-          "application/pdf",
-          "*/*"
+          "application/pdf"
         ]
       },
-      "bulkdata-media-type+wc": {
+      "bulkdata-media-type-wc": {
         "type": "string",
         "enum": [
+          "*/*",
           "application/octet-stream",
           "image/jpeg",
           "image/jls",
