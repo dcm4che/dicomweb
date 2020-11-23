@@ -48,12 +48,6 @@
         "operationId": "RetrieveInstanceURI",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "name": "Accept",
             "in": "header",
             "description": "The Acceptable Media Types for the response payload.",
@@ -63,12 +57,18 @@
             }
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "name": "contentType",
             "in": "query",
             "description": "The Acceptable Media Types for the response payload.",
             "schema": {
               "$ref": "#/components/schemas/dicom-media-type"
             }
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/requestType"
@@ -127,12 +127,6 @@
         "operationId": "RetrieveRenderedInstanceURI",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "name": "Accept",
             "in": "header",
             "description": "The Acceptable Media Types for the response payload.",
@@ -142,12 +136,18 @@
             }
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "name": "contentType",
             "in": "query",
             "description": "The Acceptable Media Types for the response payload.",
             "schema": {
               "$ref": "#/components/schemas/rendered-media-type"
             }
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/requestType"
@@ -272,16 +272,16 @@
         "operationId": "SearchForAllStudies",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/match"
@@ -489,16 +489,16 @@
         "operationId": "RetrieveRenderedStudy",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/rendered-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/rendered-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -596,16 +596,16 @@
         "operationId": "SearchForStudySeries",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -651,16 +651,16 @@
         "operationId": "SearchForStudyInstances",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -706,16 +706,16 @@
         "operationId": "SearchForAllSeries",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/match"
@@ -850,16 +850,16 @@
         "operationId": "RetrieveRenderedSeries",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/rendered-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/rendered-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -960,16 +960,16 @@
         "operationId": "SearchForAllInstances",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/match"
@@ -1012,16 +1012,16 @@
         "operationId": "SearchForStudySeriesInstances",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/search-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -1168,16 +1168,16 @@
         "operationId": "RetrieveRenderedInstance",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/rendered-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/rendered-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -1336,16 +1336,16 @@
         "operationId": "RetrieveRenderedFrames",
         "parameters": [
           {
-            "$ref": "#/components/parameters/charset-hp"
-          },
-          {
-            "$ref": "#/components/parameters/charset-qp"
-          },
-          {
             "$ref": "#/components/parameters/rendered-accept-hp"
           },
           {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
             "$ref": "#/components/parameters/rendered-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
           },
           {
             "$ref": "#/components/parameters/study"
