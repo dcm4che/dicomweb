@@ -1512,7 +1512,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/search-media-type"
         }
@@ -1521,6 +1520,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/search-media-type+wc"
         }
@@ -1529,7 +1529,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/retrieve-media-type"
         }
@@ -1538,6 +1537,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/retrieve-media-type+wc"
         }
@@ -1546,7 +1546,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/rendered-media-type"
         }
@@ -1555,6 +1554,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/rendered-media-type+wc"
         }
@@ -1563,7 +1563,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/thumbnail-media-type"
         }
@@ -1572,6 +1571,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/thumbnail-media-type+wc"
         }
@@ -1580,7 +1580,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/frames-media-type"
         }
@@ -1589,6 +1588,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/frames-media-type+wc"
         }
@@ -1597,7 +1597,6 @@
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
-        "required": true,
         "schema": {
           "$ref": "#/components/schemas/bulkdata-media-type"
         }
@@ -1606,6 +1605,7 @@
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/bulkdata-media-type+wc"
         }
