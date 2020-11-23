@@ -263,7 +263,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/wado-uri"
+            "$ref": "#/components/responses/retrievedRenderedURI"
           },
           "400": {
             "description": "There was a problem with the request."
@@ -410,7 +410,7 @@
         "tags": [
           "STOW-RS"
         ],
-        "summary": "Stores Study",
+        "summary": "Store Study",
         "operationId": "StoreStudy",
         "parameters": [
           {
@@ -1991,15 +1991,9 @@
       }
     },
     "responses": {
-      "wado-uri": {
-        "description": "Instance successfully (rendered and) retrieved.",
+      "retrievedRenderedURI": {
+        "description": "Instance successfully rendered and retrieved.",
         "content": {
-          "application/dicom": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
           "image/jpeg": {
             "schema": {
               "type": "string",
