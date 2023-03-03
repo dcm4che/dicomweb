@@ -2278,24 +2278,9 @@
     "requestBodies": {
       "storeStudies": {
         "content": {
-          "multipart/related;type=application/dicom": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=application/dicom+json": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=application/dicom": {},
+          "multipart/related;type=application/dicom+xml": {},
+          "multipart/related;type=application/dicom+json": {}
         }
       }
     },
@@ -2303,93 +2288,27 @@
       "retrievedRenderedURI": {
         "description": "Instance successfully rendered and retrieved.",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/jp2": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mp4": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/H265": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/html": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/plain": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/rtf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "application/pdf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {},
+          "image/jp2": {},
+          "video/mpeg": {},
+          "video/mp4": {},
+          "video/H265": {},
+          "text/html": {},
+          "text/plain": {},
+          "type=text/xml": {},
+          "type=text/rtf": {},
+          "application/pdf": {}
         }
       },
       "searchResults": {
         "description": "The search completed successfully, and the results are contained in the payload",
         "content": {
-          "multipart/related;type=application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "multipart/related;type=application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2397,16 +2316,10 @@
       "storeInstancesSuccessful": {
         "description": "The origin server successfully stored all Instances.",
         "content": {
-          "application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2414,16 +2327,10 @@
       "storeInstancesWarnings": {
         "description": "The origin server stored some of the Instances but warnings or failures exist for others.",
         "content": {
-          "application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2431,16 +2338,10 @@
       "storeInstancesConflict": {
         "description": "The request was formed correctly but the origin server was unable to store any instances due to a conflict in the request.",
         "content": {
-          "application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2448,176 +2349,45 @@
       "retrievedInstances": {
         "description": "The response payload contains representations for all of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/dicom\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"text/xml\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "application/dicom": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/dicom\"": {},
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"application/pdf\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"text/xml\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {},
+          "application/dicom": {}
         }
       },
       "retrievedInstancesPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/dicom\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"text/xml\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/dicom\"": {},
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"application/pdf\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"text/xml\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {}
         }
       },
       "retrievedMetadata": {
         "description": "The response payload contains representations for all of the Target Resource(s).",
         "content": {
-          "application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2625,16 +2395,10 @@
       "retrievedMetadataPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "application/dicom+xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
+          "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "type": "string",
-              "format": "binary"
+              "$ref": "dicom+json.json"
             }
           }
         }
@@ -2642,724 +2406,159 @@
       "retrievedRendered": {
         "description": "The response payload contains representation for all of the Target Resource(s).",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/jp2": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mp4": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/H265": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/html": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/plain": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/rtf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "application/pdf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/gif\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/png\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/html\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/plain\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/xml\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"type=text/rtf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {},
+          "image/jp2": {},
+          "video/mpeg": {},
+          "video/mp4": {},
+          "video/H265": {},
+          "text/html": {},
+          "text/plain": {},
+          "type=text/xml": {},
+          "type=text/rtf": {},
+          "application/pdf": {},
+          "multipart/related; type=\"image/jpeg\"": {},
+          "multipart/related; type=\"image/gif\"": {},
+          "multipart/related; type=\"image/png\"": {},
+          "multipart/related; type=\"image/jp2\"": {},
+          "multipart/related; type=\"video/mpeg\"": {},
+          "multipart/related; type=\"video/mp4\"": {},
+          "multipart/related; type=\"video/H265\"": {},
+          "multipart/related; type=\"text/html\"": {},
+          "multipart/related; type=\"text/plain\"": {},
+          "multipart/related; type=\"text/xml\"": {},
+          "multipart/related; type=\"type=text/rtf\"": {},
+          "multipart/related; type=\"application/pdf\"": {}
         }
       },
       "retrievedRenderedPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/jp2": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mp4": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/H265": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/html": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "text/plain": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "type=text/rtf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "application/pdf": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/gif\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/png\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/html\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/plain\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"text/xml\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"type=text/rtf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {},
+          "image/jp2": {},
+          "video/mpeg": {},
+          "video/mp4": {},
+          "video/H265": {},
+          "text/html": {},
+          "text/plain": {},
+          "type=text/xml": {},
+          "type=text/rtf": {},
+          "application/pdf": {},
+          "multipart/related; type=\"image/jpeg\"": {},
+          "multipart/related; type=\"image/gif\"": {},
+          "multipart/related; type=\"image/png\"": {},
+          "multipart/related; type=\"image/jp2\"": {},
+          "multipart/related; type=\"video/mpeg\"": {},
+          "multipart/related; type=\"video/mp4\"": {},
+          "multipart/related; type=\"video/H265\"": {},
+          "multipart/related; type=\"text/html\"": {},
+          "multipart/related; type=\"text/plain\"": {},
+          "multipart/related; type=\"text/xml\"": {},
+          "multipart/related; type=\"type=text/rtf\"": {},
+          "multipart/related; type=\"application/pdf\"": {}
         }
       },
       "retrievedRenderedFrames": {
         "description": "The response payload contains representation for all of the Target Resource(s).",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/jp2": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mp4": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/H265": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/gif\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/png\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {},
+          "image/jp2": {},
+          "video/mpeg": {},
+          "video/mp4": {},
+          "video/H265": {},
+          "multipart/related; type=\"image/jpeg\"": {},
+          "multipart/related; type=\"image/gif\"": {},
+          "multipart/related; type=\"image/png\"": {},
+          "multipart/related; type=\"image/jp2\"": {}
         }
       },
       "retrievedRenderedFramesPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/jp2": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/mp4": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "video/H265": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/gif\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/png\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related; type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {},
+          "image/jp2": {},
+          "video/mpeg": {},
+          "video/mp4": {},
+          "video/H265": {},
+          "multipart/related; type=\"image/jpeg\"": {},
+          "multipart/related; type=\"image/gif\"": {},
+          "multipart/related; type=\"image/png\"": {},
+          "multipart/related; type=\"image/jp2\"": {}
         }
       },
       "retrievedThumbnail": {
         "description": "The response payload contains a thumbnail for the Target Resource",
         "content": {
-          "image/jpeg": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/gif": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "image/png": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "image/jpeg": {},
+          "image/gif": {},
+          "image/png": {}
         }
       },
       "retrievePixelData": {
         "description": "The response payload contains representations for all of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {}
         }
       },
       "retrievePixelDataPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {}
         }
       },
       "retrievedBulkdata": {
         "description": "The response payload contains representations for all of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"text/xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {},
+          "multipart/related;type=\"text/xml": {},
+          "multipart/related;type=\"application/pdf\"": {}
         }
       },
       "retrievedBulkdataPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
-          "multipart/related;type=\"application/octet-stream\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jls\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jp2\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/jpx\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"image/dicom-rle\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mpeg\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/mp4\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"video/H265\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"text/xml": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "multipart/related;type=\"application/pdf\"": {
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
+          "multipart/related;type=\"application/octet-stream\"": {},
+          "multipart/related;type=\"image/jpeg\"": {},
+          "multipart/related;type=\"image/jls\"": {},
+          "multipart/related;type=\"image/jp2\"": {},
+          "multipart/related;type=\"image/jpx\"": {},
+          "multipart/related;type=\"image/dicom-rle\"": {},
+          "multipart/related;type=\"video/mpeg\"": {},
+          "multipart/related;type=\"video/mp4\"": {},
+          "multipart/related;type=\"video/H265\"": {},
+          "multipart/related;type=\"text/xml": {},
+          "multipart/related;type=\"application/pdf\"": {}
         }
       }
     }
