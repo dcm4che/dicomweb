@@ -10,7 +10,7 @@
       "description": "Search for DICOM objects",
       "externalDocs": {
         "description": "DICOM PS3.18 10.6",
-        "url": "http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.6.html"
+        "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.6.html"
       }
     },
     {
@@ -18,7 +18,7 @@
       "description": "Retrieve DICOM objects",
       "externalDocs": {
         "description": "DICOM PS3.18 10.4",
-        "url": "http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.4.html"
+        "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.4.html"
       }
     },
     {
@@ -26,7 +26,7 @@
       "description": "Retrieve single DICOM instances",
       "externalDocs": {
         "description": "DICOM PS3.18 9",
-        "url": "http://dicom.nema.org/medical/dicom/current/output/chtml/part18/chapter_9.html"
+        "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part18/chapter_9.html"
       }
     },
     {
@@ -34,7 +34,15 @@
       "description": "Store DICOM objects",
       "externalDocs": {
         "description": "DICOM PS3.18 10.5",
-        "url": "http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.5.html"
+        "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_10.5.html"
+      }
+    },
+    {
+      "name": "UPS-RS",
+      "description": "RESTful interface to the Unified Procedure Step Service SOP Classes",
+      "externalDocs": {
+        "description": "DICOM PS3.18 11",
+        "url": "https://dicom.nema.org/medical/dicom/current/output/html/part18.html#chapter_11"
       }
     }
   ],
@@ -1764,6 +1772,514 @@
           }
         }
       }
+    },
+    "/workitems": {
+      "get": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Search for Workitems",
+        "operationId": "SearchForWorkitems",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-hp"
+          },
+          {
+            "$ref": "#/components/parameters/search-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/charset-qp"
+          },
+          {
+            "$ref": "#/components/parameters/match"
+          },
+          {
+            "$ref": "#/components/parameters/fuzzymatching"
+          },
+          {
+            "$ref": "#/components/parameters/includefield"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/searchResults"
+          },
+          "204": {
+            "description": "The search completed successfully, but there were zero results."
+          },
+          "400": {
+            "description": "There was a problem with the request."
+          },
+          "413": {
+            "description": "The search was too broad, and the body of the response should contain a Status Report with additional information about the failure."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Creates a new Workitem",
+        "operationId": "CreateWorkitem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitemUID"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/workitem"
+        },
+        "responses": {
+          "201": {
+            "description": "The Target Workitem was successfully added to the Worklist."
+          },
+          "400": {
+            "description": "The request payload did not satisfy the requirements for a Workitem."
+          },
+          "409": {
+            "description": "The Target Workitem already exists."
+          }
+        }
+      }
+    },
+    "/workitems/{workitem}": {
+      "get": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Retrieve Workitem",
+        "operationId": "RetrieveWorkitem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievedWorkitem"
+          },
+          "400": {
+            "description": "There was a problem with the request."
+          },
+          "404": {
+            "description": "The origin server has no knowledge of the Target Workitem."
+          },
+          "410": {
+            "description": "The origin server knows that the Target Workitem did exist but has been deleted."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Update existing Workitem",
+        "operationId": "UpdateWorkitem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/workitem"
+        },
+        "responses": {
+          "200": {
+            "description": "The Target Workitem was updated, and the optional response payload contains a Status Report document.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There was a problem with the request."
+          },
+          "404": {
+            "description": "The Target Workitem was not found."
+          },
+          "409": {
+            "description": "The request is inconsistent with the current state of the Target Workitem."
+          },
+          "410": {
+            "description": "The Target Workitem once existed, but no longer exists."
+          }
+        }
+      }
+    },
+    "/workitems/{workitem}/state": {
+      "put": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Change Workitem State",
+        "operationId": "ChangeWorkitemState",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/workitem"
+        },
+        "responses": {
+          "200": {
+            "description": "The update was successful, and the response payload contains a Status Report document.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request cannot be performed, because it is invalid given the current state of the Target Workitem, or the Transaction UID is missing or incorrect."
+          },
+          "404": {
+            "description": "The Target Workitem was not found."
+          },
+          "409": {
+            "description": "The request is inconsistent with the current state of the Target Workitem."
+          },
+          "410": {
+            "description": "The Target Workitem once existed, but no longer exists."
+          }
+        }
+      }
+    },
+    "/workitems/{workitem}/cancelrequest": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Request Cancellation of Workitem",
+        "operationId": "RequestWorkitemCancellation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/workitem"
+        },
+        "responses": {
+          "202": {
+            "description": "The request was accepted by the origin server. A success response payload may contain a Status Report.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "404": {
+            "description": "The Target Workitem was not found."
+          },
+          "409": {
+            "description": "The request is inconsistent with the current state of the Target Workitem."
+          }
+        }
+      }
+    },
+    "/workitems/{workitem}/subscribers/{subscriber}": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Subscribe to Workitem",
+        "operationId": "SubscribeWorkitem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem"
+          },
+          {
+            "$ref": "#/components/parameters/subscriber"
+          },
+          {
+            "$ref": "#/components/parameters/deletionlock"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The Subscription was created. A success response payload may contain a Status Report.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "403": {
+            "description": "The origin server understood the request but is refusing to perform the query."
+          },
+          "404": {
+            "description": "The Target Resource was not found."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Unsubscribe from Workitem",
+        "operationId": "UnsubscribeWorkitem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem"
+          },
+          {
+            "$ref": "#/components/parameters/subscriber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Subscription was removed."
+          },
+          "400": {
+            "description": "There was a problem with the request."
+          },
+          "404": {
+            "description": "The target Subscription was not found."
+          }
+        }
+      }
+    },
+    "/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Subscribe to Worklist",
+        "operationId": "SubscribeWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/subscriber"
+          },
+          {
+            "$ref": "#/components/parameters/deletionlock"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The Subscription was created. A success response payload may contain a Status Report.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "403": {
+            "description": "The origin server understood the request but is refusing to perform the query."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Unsubscribe from Worklist",
+        "operationId": "UnsubscribeWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscriber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Subscriptions were removed."
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "404": {
+            "description": "The target Subscription was not found."
+          }
+        }
+      }
+    },
+    "/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Subscribe to Filtered Worklist",
+        "operationId": "SubscribeFilteredWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workitem-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/workitem-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/subscriber"
+          },
+          {
+            "$ref": "#/components/parameters/filter"
+          },
+          {
+            "$ref": "#/components/parameters/deletionlock"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The Subscription was created. A success response payload may contain a Status Report.",
+            "content": {
+              "application/dicom+xml": {},
+              "application/dicom+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dicom+json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "403": {
+            "description": "The origin server understood the request but is refusing to perform the query."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Unsubscribe from Filtered Worklist",
+        "operationId": "UnsubscribeFilteredWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscriber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Subscriptions were removed."
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "404": {
+            "description": "The target Subscription was not found."
+          }
+        }
+      }
+    },
+    "/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}/suspend": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Suspend Subscription from Worklist",
+        "operationId": "SuspendSubscriptionWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscriber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Worklist Subscription was suspended."
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "404": {
+            "description": "The target Subscription was not found."
+          }
+        }
+      }
+    },
+    "/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}/suspend": {
+      "post": {
+        "tags": [
+          "UPS-RS"
+        ],
+        "summary": "Suspend Subscription from Filtered Worklist",
+        "operationId": "SuspendSubscriptionFilteredWorklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscriber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Worklist Subscription was suspended."
+          },
+          "400": {
+            "description": "There was a problem with the syntax of the request."
+          },
+          "404": {
+            "description": "The target Subscription was not found."
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1799,6 +2315,23 @@
         "required": true,
         "schema": {
           "$ref": "#/components/schemas/search-media-type-wc"
+        }
+      },
+      "workitem-accept-qp": {
+        "name": "accept",
+        "in": "query",
+        "description": "The Acceptable Media Types for the response payload.",
+        "schema": {
+          "$ref": "#/components/schemas/workitem-media-type"
+        }
+      },
+      "workitem-accept-hp": {
+        "name": "Accept",
+        "in": "header",
+        "description": "The Acceptable Media Types for the response payload.",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/workitem-media-type-wc"
         }
       },
       "retrieve-accept-qp": {
@@ -1929,6 +2462,52 @@
         "required": true,
         "schema": {
           "type": "string"
+        }
+      },
+      "workitem": {
+        "name": "workitem",
+        "in": "path",
+        "description": "Workitem UID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "subscriber": {
+        "name": "subscriber",
+        "in": "path",
+        "description": "AET of a Subscriber",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "workitemUID": {
+        "name": "workitem",
+        "in": "query",
+        "description": "Workitem UID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "deletionlock": {
+        "name": "deletionlock",
+        "in": "query",
+        "description": "If present with a value of true the Subscription will be created with a Deletion Lock.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "filter": {
+        "name": "filter",
+        "in": "query",
+        "description": "Comma-separated list of one or more matching keys (attribute/value pairs). A Workitem Subscription will be created/suspended for any existing and future Workitem that matches the attribute/value pairs of the filter.",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "match": {
@@ -2122,6 +2701,21 @@
         "enum": [
           "*/*",
           "multipart/related;type=\"application/dicom+xml\"",
+          "application/dicom+json"
+        ]
+      },
+      "workitem-media-type": {
+        "type": "string",
+        "enum": [
+          "application/dicom+xml",
+          "application/dicom+json"
+        ]
+      },
+      "workitem-media-type-wc": {
+        "type": "string",
+        "enum": [
+          "*/*",
+          "application/dicom+xml",
           "application/dicom+json"
         ]
       },
@@ -2624,6 +3218,16 @@
           "multipart/related;type=\"video/H265\"": {},
           "multipart/related;type=\"text/xml": {},
           "multipart/related;type=\"application/pdf\"": {}
+        }
+      },
+      "retrievedWorkitem": {
+        "content": {
+          "application/dicom+xml": {},
+          "application/dicom+json": {
+            "schema": {
+              "$ref": "#/components/schemas/dicom+json"
+            }
+          }
         }
       }
     }
