@@ -1911,7 +1911,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -1959,7 +1959,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -2007,7 +2007,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -2055,7 +2055,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -2126,7 +2126,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -2194,7 +2194,7 @@
               "application/dicom+xml": {},
               "application/dicom+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/dicom+json"
+                  "$ref": "#/components/schemas/dicom-json"
                 }
               }
             }
@@ -2868,7 +2868,7 @@
           "application/pdf"
         ]
       },
-      "dicom+json": {
+      "dicom-json": {
         "title": "DICOM JSON Model",
         "externalDocs": {
           "description": "DICOM PS3.18 F",
@@ -2967,7 +2967,7 @@
           "multipart/related;type=application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -2978,7 +2978,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -2989,7 +2989,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -3000,7 +3000,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -3046,7 +3046,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -3057,7 +3057,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
@@ -3221,11 +3221,12 @@
         }
       },
       "retrievedWorkitem": {
+        "description": "The response payload contains the requested Workitem.",
         "content": {
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "#/components/schemas/dicom+json"
+              "$ref": "#/components/schemas/dicom-json"
             }
           }
         }
