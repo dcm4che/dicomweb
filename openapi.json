@@ -2273,6 +2273,71 @@
           "text/xml",
           "application/pdf"
         ]
+      },
+      "dicom+json": {
+        "title": "DICOM JSON Model",
+        "externalDocs": {
+          "description": "DICOM PS3.18 F",
+          "url": "https://dicom.nema.org/medical/dicom/current/output/html/part18.html#chapter_F"
+        },
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "{ggggeeee}": {
+              "required": [
+                "vr"
+              ],
+              "properties": {
+                "vr" : {
+                  "type": "string",
+                  "enum": [
+                    "AE",
+                    "AS",
+                    "AT",
+                    "CS",
+                    "DA",
+                    "DS",
+                    "DT",
+                    "FD",
+                    "FL",
+                    "IS",
+                    "LO",
+                    "LT",
+                    "OB",
+                    "OD",
+                    "OF",
+                    "OL",
+                    "OV",
+                    "OW",
+                    "PN",
+                    "SH",
+                    "SL",
+                    "SQ",
+                    "SS",
+                    "ST",
+                    "SV",
+                    "TM",
+                    "UC",
+                    "UI",
+                    "UL",
+                    "UN",
+                    "UR",
+                    "US",
+                    "UT",
+                    "UV"
+                  ]
+                },
+                "Value": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "requestBodies": {
@@ -2308,7 +2373,7 @@
           "multipart/related;type=application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
@@ -2319,7 +2384,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
@@ -2330,7 +2395,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
@@ -2341,7 +2406,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
@@ -2387,7 +2452,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
@@ -2398,7 +2463,7 @@
           "application/dicom+xml": {},
           "application/dicom+json": {
             "schema": {
-              "$ref": "dicom+json.json"
+              "$ref": "#/components/schemas/dicom+json"
             }
           }
         }
