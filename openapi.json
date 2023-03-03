@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "DICOMweb",
-    "version": "2020e"
+    "version": "2023a"
   },
   "tags": [
     {
@@ -587,6 +587,92 @@
         }
       }
     },
+    "/studies/{study}/bulkdata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Study Bulkdata",
+        "operationId": "RetrieveStudyBulkdata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievedBulkdata"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievedBulkdataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Study does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Study has been deleted."
+          },
+          "413": {
+            "description": "The Study Bulkdata is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
+    "/studies/{study}/pixeldata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Study Pixel Data",
+        "operationId": "RetrieveStudyPixelData",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievePixelData"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievePixelDataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Study does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Study has been deleted."
+          },
+          "413": {
+            "description": "The Study Pixel Data is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
     "/studies/{study}/series": {
       "get": {
         "tags": [
@@ -951,6 +1037,98 @@
         }
       }
     },
+    "/studies/{study}/series/{series}/bulkdata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Series Bulkdata",
+        "operationId": "RetrieveSeriesBulkdata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          },
+          {
+            "$ref": "#/components/parameters/series"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievedBulkdata"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievedBulkdataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Series does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Series has been deleted."
+          },
+          "413": {
+            "description": "The Series Pixel Data is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
+    "/studies/{study}/series/{series}/pixeldata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Series Pixel Data",
+        "operationId": "RetrieveSeriesPixelData",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          },
+          {
+            "$ref": "#/components/parameters/series"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievePixelData"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievePixelDataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Series does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Series has been deleted."
+          },
+          "413": {
+            "description": "The Series Pixel Data is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
     "/instances": {
       "get": {
         "tags": [
@@ -1275,19 +1453,117 @@
         }
       }
     },
+    "/studies/{study}/series/{series}/instances/{instance}/bulkdata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Instance Bulkdata",
+        "operationId": "RetrieveInstanceBulkdata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/bulkdata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          },
+          {
+            "$ref": "#/components/parameters/series"
+          },
+          {
+            "$ref": "#/components/parameters/instance"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievedBulkdata"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievedBulkdataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Instance does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Instance has been deleted."
+          },
+          "413": {
+            "description": "The Instance Pixel Data is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
+    "/studies/{study}/series/{series}/instances/{instance}/pixeldata": {
+      "get": {
+        "tags": [
+          "WADO-RS"
+        ],
+        "summary": "Retrieve Instance Pixel Data",
+        "operationId": "RetrieveInstancePixelData",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-hp"
+          },
+          {
+            "$ref": "#/components/parameters/pixeldata-accept-qp"
+          },
+          {
+            "$ref": "#/components/parameters/study"
+          },
+          {
+            "$ref": "#/components/parameters/series"
+          },
+          {
+            "$ref": "#/components/parameters/instance"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/retrievePixelData"
+          },
+          "206": {
+            "$ref": "#/components/responses/retrievePixelDataPartial"
+          },
+          "400": {
+            "description": "The origin cannot process the request because of errors in the request headers or parameters."
+          },
+          "404": {
+            "description": "The Instance does not exist."
+          },
+          "406": {
+            "description": "The origin server does not support any of the Acceptable Media Types."
+          },
+          "410": {
+            "description": "The Instance has been deleted."
+          },
+          "413": {
+            "description": "The Instance Pixel Data is too large to be returned by the origin server."
+          }
+        }
+      }
+    },
     "/studies/{study}/series/{series}/instances/{instance}/frames/{frames}": {
       "get": {
         "tags": [
           "WADO-RS"
         ],
-        "summary": "Retrieve Frames",
-        "operationId": "RetrieveFrames",
+        "summary": "Retrieve Frame Pixel Data",
+        "operationId": "RetrieveFramePixelData",
         "parameters": [
           {
-            "$ref": "#/components/parameters/frames-accept-hp"
+            "$ref": "#/components/parameters/pixeldata-accept-hp"
           },
           {
-            "$ref": "#/components/parameters/frames-accept-qp"
+            "$ref": "#/components/parameters/pixeldata-accept-qp"
           },
           {
             "$ref": "#/components/parameters/study"
@@ -1304,10 +1580,10 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/retrievedFrames"
+            "$ref": "#/components/responses/retrievePixelData"
           },
           "206": {
-            "$ref": "#/components/responses/retrievedFramesPartial"
+            "$ref": "#/components/responses/retrievePixelDataPartial"
           },
           "400": {
             "description": "The origin cannot process the request because of errors in the request headers or parameters."
@@ -1377,10 +1653,10 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/retrievedRendered"
+            "$ref": "#/components/responses/retrievedRenderedFrames"
           },
           "206": {
-            "$ref": "#/components/responses/retrievedRenderedPartial"
+            "$ref": "#/components/responses/retrievedRenderedFramesPartial"
           },
           "400": {
             "description": "The origin cannot process the request because of errors in the request headers or parameters."
@@ -1576,21 +1852,21 @@
           "$ref": "#/components/schemas/thumbnail-media-type-wc"
         }
       },
-      "frames-accept-qp": {
+      "pixeldata-accept-qp": {
         "name": "accept",
         "in": "query",
         "description": "The Acceptable Media Types for the response payload.",
         "schema": {
-          "$ref": "#/components/schemas/frames-media-type"
+          "$ref": "#/components/schemas/pixeldata-media-type"
         }
       },
-      "frames-accept-hp": {
+      "pixeldata-accept-hp": {
         "name": "Accept",
         "in": "header",
         "description": "The Acceptable Media Types for the response payload.",
         "required": true,
         "schema": {
-          "$ref": "#/components/schemas/frames-media-type-wc"
+          "$ref": "#/components/schemas/pixeldata-media-type-wc"
         }
       },
       "bulkdata-accept-qp": {
@@ -1913,6 +2189,7 @@
           "multipart/related;type=\"image/dicom-rle\"",
           "multipart/related;type=\"video/mpeg\"",
           "multipart/related;type=\"video/mp4\"",
+          "multipart/related;type=\"video/H265\"",
           "multipart/related;type=\"text/xml\"",
           "multipart/related;type=\"application/pdf\""
         ]
@@ -1930,11 +2207,12 @@
           "multipart/related;type=\"image/dicom-rle\"",
           "multipart/related;type=\"video/mpeg\"",
           "multipart/related;type=\"video/mp4\"",
+          "multipart/related;type=\"video/H265\"",
           "multipart/related;type=\"text/xml\"",
           "multipart/related;type=\"application/pdf\""
         ]
       },
-      "frames-media-type": {
+      "pixeldata-media-type": {
         "type": "string",
         "enum": [
           "application/octet-stream",
@@ -1944,10 +2222,11 @@
           "image/jpx",
           "image/dicom-rle",
           "video/mpeg",
-          "video/mp4"
+          "video/mp4",
+          "video/H265"
         ]
       },
-      "frames-media-type-wc": {
+      "pixeldata-media-type-wc": {
         "type": "string",
         "enum": [
           "*/*",
@@ -1958,7 +2237,8 @@
           "image/jpx",
           "image/dicom-rle",
           "video/mpeg",
-          "video/mp4"
+          "video/mp4",
+          "video/H265"
         ]
       },
       "bulkdata-media-type": {
@@ -1972,6 +2252,7 @@
           "image/dicom-rle",
           "video/mpeg",
           "video/mp4",
+          "video/H265",
           "text/xml",
           "application/pdf"
         ]
@@ -1988,6 +2269,7 @@
           "image/dicom-rle",
           "video/mpeg",
           "video/mp4",
+          "video/H265",
           "text/xml",
           "application/pdf"
         ]
@@ -2231,6 +2513,18 @@
               "type": "string",
               "format": "binary"
             }
+          },
+          "multipart/related;type=\"video/H265\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "application/dicom": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
           }
         }
       },
@@ -2298,6 +2592,12 @@
             }
           },
           "multipart/related;type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/H265\"": {
             "schema": {
               "type": "string",
               "format": "binary"
@@ -2413,6 +2713,78 @@
               "type": "string",
               "format": "binary"
             }
+          },
+          "multipart/related; type=\"image/jpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/gif\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/png\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jp2\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/mpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/H265\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/html\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/plain\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/xml\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"type=text/rtf\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"application/pdf\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
           }
         }
       },
@@ -2490,6 +2862,220 @@
               "type": "string",
               "format": "binary"
             }
+          },
+          "multipart/related; type=\"image/jpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/gif\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/png\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jp2\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/mpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"video/H265\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/html\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/plain\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"text/xml\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"type=text/rtf\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"application/pdf\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "retrievedRenderedFrames": {
+        "description": "The response payload contains representation for all of the Target Resource(s).",
+        "content": {
+          "image/jpeg": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/gif": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/png": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/jp2": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/mpeg": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/mp4": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/H265": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/gif\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/png\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jp2\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "retrievedRenderedFramesPartial": {
+        "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
+        "content": {
+          "image/jpeg": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/gif": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/png": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "image/jp2": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/mpeg": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/mp4": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "video/H265": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/gif\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/png\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related; type=\"image/jp2\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
           }
         }
       },
@@ -2516,7 +3102,7 @@
           }
         }
       },
-      "retrievedFrames": {
+      "retrievePixelData": {
         "description": "The response payload contains representations for all of the Target Resource(s).",
         "content": {
           "multipart/related;type=\"application/octet-stream\"": {
@@ -2566,10 +3152,16 @@
               "type": "string",
               "format": "binary"
             }
+          },
+          "multipart/related;type=\"video/H265\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
           }
         }
       },
-      "retrievedFramesPartial": {
+      "retrievePixelDataPartial": {
         "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
         "content": {
           "multipart/related;type=\"application/octet-stream\"": {
@@ -2615,6 +3207,12 @@
             }
           },
           "multipart/related;type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/H265\"": {
             "schema": {
               "type": "string",
               "format": "binary"
@@ -2668,6 +3266,83 @@
             }
           },
           "multipart/related;type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/H265\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"text/xml": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"application/pdf\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "retrievedBulkdataPartial": {
+        "description": "The response payload contains representations for some, but not all, of the Target Resource(s).",
+        "content": {
+          "multipart/related;type=\"application/octet-stream\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"image/jpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"image/jls\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"image/jp2\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"image/jpx\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"image/dicom-rle\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/mpeg\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/mp4\"": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "multipart/related;type=\"video/H265\"": {
             "schema": {
               "type": "string",
               "format": "binary"
