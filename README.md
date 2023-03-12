@@ -8,7 +8,7 @@
 > can be implemented by developers who have minimal familiarity with the DICOM standard and which uses consumer
 > application friendly mechanisms like http, JSON and media types (like "image/jpeg") to the maximum extent possible.
 
-DICOMweb | DUL/DIMSE service
+DICOMweb [DICOM PS3.18](https://dicom.nema.org/medical/dicom/current/output/html/part18.html) | DUL/DIMSE service [DICOM PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html)
 -- | --
 [Studies Service Store Transaction (STOW-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5) | [Storage Service Class (C-STORE)](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#chapter_B)
 [Studies Service Search Transaction (QIDO-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6) | [Study Root Query/Retrieve Information Model - FIND SOP Class](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_C.4.1)
