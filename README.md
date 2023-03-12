@@ -115,8 +115,6 @@ time Attributes is applied by default (= without [extended Negotion of _combined
 
 ### [WADO-URI](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/WADO-URI)
 
-Examples:
-
 #### Sample 1: Retrieve Rendered DICOM Image:
 ```console
 $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
