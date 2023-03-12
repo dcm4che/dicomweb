@@ -2,7 +2,6 @@
 
 [DICOMWeb - Wikipedia](https://en.wikipedia.org/wiki/DICOMweb)
 > DICOMweb is a term applied to the family of RESTful DICOM services defined for sending, retrieving and querying for
-> 
 > medical images and related information.
 >
 > The intent is to provide a light-weight mobile device and web browser friendly mechanism for accessing images, which
