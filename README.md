@@ -41,7 +41,7 @@ incorrect extractions of "Common Aspects of DICOM Web Services" from previous in
 
 ### [QIDO-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/QIDO-RS)
 
-Examples:
+#### E.g.: Search for Studies for Patient with Patient Name `Zeta^*` and Study Date `20220928` with results in JSON Format
 ```console
 $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies?PatientName=Zeta%5E%2A&StudyDate=20220928'
 *   Trying 127.0.0.1:8080...
@@ -67,6 +67,7 @@ $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-ar
 [{"00080005":{"vr":"CS"},"00080020":{"vr":"DA","Value":["20220928"]},"00080030":{"vr":"TM","Value":["214137.000"]},"00080050":{"vr":"SH"},"00080054":{"vr":"AE","Value":["DCM4CHEE"]},"00080056":{"vr":"CS","Value":["ONLINE"]},"00080061":{"vr":"CS","Value":["SM"]},"00080090":{"vr":"PN"},"00080201":{"vr":"SH"},"00081190":{"vr":"UR","Value":["http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604"]},"00100010":{"vr":"PN","Value":[{"Alphabetic":"Zeta^Zachary"}]},"00100020":{"vr":"LO","Value":["ccbaf3d29596b6d2"]},"00100030":{"vr":"DA","Value":["19830606"]},"00100040":{"vr":"CS","Value":["M"]},"0020000D":{"vr":"UI","Value":["2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604"]},"00200010":{"vr":"SH","Value":["Case-F"]},"00201206":{"vr":"IS","Value":["1"]},"00201208":{"vr":"IS","Value":["1"]}}]
 ```
 
+#### E.g.: Search for Studies for Patient with Patient Name `Zeta^*` and Study Date `20220928` with results in XML Format
 ```console
 $ curl -v -H 'Accept: multipart/related; type="application/dicom+xml"' 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies?00100010=Zeta%5E%2A&00080020=20220928'
 *   Trying 127.0.0.1:8080...
@@ -97,7 +98,7 @@ Content-Type: application/dicom+xml
 --31a077d1-31cc-4c93-9190-0a5c98661f38--
 ```
 
-Remarks:
+**Remarks:**
 - QIDO-RS defines paging by _Query Parameters_ `offset` and `limit`, but only specifies that the list of returned matches
 shall be ordered, but not by which criteria!
 - QIDO-RS **always** applies _combined date and time Range Matching_ if values of date **and** time of a DA/TM attribute
@@ -108,17 +109,17 @@ time Attributes is applied by default (= without [extended Negotion of _combined
 
 ### [DICOM JSON Format](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#chapter_F)
 
--> [Example](dicom.json)
+-> [Example](https://github.com/dcm4che/dicomweb/blob/master/dicom.json)
 
 ### [DICOM XML Format](https://dicom.nema.org/medical/dicom/current/output/html/part19.html#sect_A.1)
 
--> [Example](dicom.xml)
+-> [Example](https://github.com/dcm4che/dicomweb/blob/master/dicom.xml)
 
 ### [WADO-URI](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/WADO-URI)
 
 Examples:
 
-Retrieve Rendered DICOM Image:
+#### Sample 1: Retrieve Rendered DICOM Image:
 ```console
 $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
 *   Trying 127.0.0.1:8080...
@@ -145,7 +146,7 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestT
 { [16392 bytes data]
 ```
 
-Retrieve compressed DICOM Part 10 file:
+#### Sample 2: Retrieve compressed DICOM Part 10 file:
 ```console
 $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1&contentType=application/dicom&transferSyntax=*'
 *   Trying 127.0.0.1:8080...
@@ -173,9 +174,7 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestT
 
 ### [WADO-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/WADO-RS)
 
-Examples:
-
-Retrieve compressed DICOM Part 10 file:
+#### Sample 1: Retrieve compressed DICOM Part 10 file:
 ```console
 $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
 *   Trying 127.0.0.1:8080...
@@ -210,7 +209,7 @@ Content-Type: application/dicom;transfer-syntax=1.2.840.10008.1.2.4.50
 DICMUL�OBUI1.2.840.10008.5.1.4.1.1.77.1.6UI22.16.840.1.113995.3.110.3.0.10118.6000009.258169.1UI1.2.840.10008.1.2.4.50UI1.2.40.0.13.1.3SHdcm4che-5.29CS DERIVED\PRIMARY\VOLUME\RESAMPLED2022101TM
 ```
 
-Retrieve Rendered DICOM Image:
+#### Sample 2: Retrieve Rendered DICOM Image:
 ```console
 $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/rendered'
 *   Trying 127.0.0.1:8080...
@@ -237,7 +236,7 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.
 * Connection #0 to host localhost left intact
 ```
 
-Retrieve Metadata of DICOM Object
+#### Sample 3: Retrieve Metadata of DICOM Object
 ```console
 $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/metadata'
 *   Trying 127.0.0.1:8080...
@@ -266,10 +265,7 @@ $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-ar
 
 ### [STOW-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/STOW-RS)
 
-Examples:
-```
-
-```
+TODO
 
 
 ### [UPS-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS)
