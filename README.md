@@ -30,7 +30,7 @@ DICOMweb [DICOM PS3.18](https://dicom.nema.org/medical/dicom/current/output/html
 - 2017: [Supp 198: Retirement of WADO-WS](https://dicom.nema.org/medical/dicom/Final/sup198_ft2_retire_wado-ws.pdf)
 - 2019: [Supp 183: PS3.18 Web Services Re-Documentation](https://dicom.nema.org/medical/dicom/Final/sup183_ft_part18_redoc.pdf)
 (Made specification hard to read by use of extended Augmented Backus-Naur Form (ABNF) notation and introduced several
-inconsistency with [previous PS3.18 2019a](https://dicom.nema.org/medical/dicom/2019a/output/html/part18.html) by
+inconsistencies with [previous PS3.18 2019a](https://dicom.nema.org/medical/dicom/2019a/output/html/part18.html) by
 incorrect extractions of "Common Aspects of DICOM Web Services" from previous individual service descriptions.)
 - 2020: [Supp 203: Thumbnail Resources for DICOMweb](https://dicom.nema.org/medical/dicom/Final/sup203_ft_Thumbnail_Resources_for_DICOMweb.pdf)
 - 2020: [Supp 228: DICOMweb API for Server Volumetric Rendering](https://www.dicomstandard.org/News-dir/ftsup/docs/sups/sup228.pdf)
