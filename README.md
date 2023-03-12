@@ -14,7 +14,7 @@ DICOMweb | DUL/DIMSE service
 -- | --
 [Studies Service Store Transaction (STOW-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5) | [Storage Service Class (C-STORE)](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#chapter_B)
 [Studies Service Search Transaction (QIDO-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6) | [Study Root Query/Retrieve Information Model - FIND SOP Class](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_C.4.1)
-[Studies Service Store Transaction (WADO-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4) | [Study Root Query/Retrieve Information Model - GET SOP Class](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_C.4.3)
+[Studies Service Retrieve Transaction (WADO-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4) | [Study Root Query/Retrieve Information Model - GET SOP Class](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_C.4.3)
 [Worklist Service (UPS-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#chapter_11) | [Unified Procedure Step Service and SOP Classes](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#chapter_CC)
 
 [Introduction of DICOMweb Services at NEMA](https://www.dicomstandard.org/using/dicomweb)
