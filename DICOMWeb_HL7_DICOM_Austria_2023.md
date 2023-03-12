@@ -3,7 +3,7 @@
 ### [DICOMweb?](README.md)
 ### [Geschichte](README.md#history)
 ### [Search (QIDO-RS)](README.md#qido-rs)
-### [DICOM JSON](README.md#dicom_json_format) und [XML format](README.md#dicom_xml_format)
+### [DICOM JSON](README.md#dicom-json-format) und [XML format](README.md#dicom-xml-format)
 ### [Retrieve (WADO-URI](README.md#wado-uri)[+ WADO-RS)](README.md#wado-rs)
 ### [Storage (STOW-RS)](README.md#stow-rs)
 ### [Worklist (UPS-RS)](README.md#ups-rs) (Optional)
