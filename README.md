@@ -69,7 +69,7 @@ $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-ar
 ```
 
 ```console
-$ curl -v -H 'Accept: multipart/related; type="application/dicom+xml"' 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies?PatientName=Zeta%5E%2A&StudyDate=20220928'
+$ curl -v -H 'Accept: multipart/related; type="application/dicom+xml"' 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies?00100010=Zeta%5E%2A&00080020=20220928'
 *   Trying 127.0.0.1:8080...
 * Connected to localhost (127.0.0.1) port 8080 (#0)
 > GET /dcm4chee-arc/aets/DCM4CHEE/rs/studies?00100010=Zeta%5E%2A&00080020=20220928 HTTP/1.1
