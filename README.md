@@ -11,7 +11,7 @@
 
 **Corresponding DICOM Upper Layer (DUL) - also referenced as DIMSE - services**
 
-DICOMweb Service defined in [DICOM PS3.18](https://dicom.nema.org/medical/dicom/current/output/html/part18.html) | DUL/DIMSE service defined in [DICOM PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html)
+DICOMweb | DUL/DIMSE service
 -- | --
 [Studies Service Store Transaction (STOW-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5) | [Storage Service Class (C-STORE)](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#chapter_B)
 [Studies Service Search Transaction (QIDO-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6) | [Study Root Query/Retrieve Information Model - FIND SOP Class](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_C.4.1)
