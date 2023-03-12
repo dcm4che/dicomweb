@@ -8,8 +8,6 @@
 > can be implemented by developers who have minimal familiarity with the DICOM standard and which uses consumer
 > application friendly mechanisms like http, JSON and media types (like "image/jpeg") to the maximum extent possible.
 
-**Corresponding DICOM Upper Layer (DUL) - also referenced as DIMSE - services**
-
 DICOMweb | DUL/DIMSE service
 -- | --
 [Studies Service Store Transaction (STOW-RS)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5) | [Storage Service Class (C-STORE)](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#chapter_B)
