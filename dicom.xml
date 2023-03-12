@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="ImageType" tag="00080008" vr="CS">
+    <Value number="1">DERIVED</Value>
+    <Value number="2">PRIMARY</Value>
+    <Value number="3">VOLUME</Value>
+    <Value number="4">RESAMPLED</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="InstanceCreationDate" tag="00080012" vr="DA">
+    <Value number="1">20221012</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="InstanceCreationTime" tag="00080013" vr="TM">
+    <Value number="1">033156.000</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SOPClassUID" tag="00080016" vr="UI">
+    <Value number="1">1.2.840.10008.5.1.4.1.1.77.1.6</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SOPInstanceUID" tag="00080018" vr="UI">
+    <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="StudyDate" tag="00080020" vr="DA">
+    <Value number="1">20220928</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ContentDate" tag="00080023" vr="DA">
+    <Value number="1">20221012</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="AcquisitionDateTime" tag="0008002A" vr="DT">
+    <Value number="1">20220928214137.000</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="StudyTime" tag="00080030" vr="TM">
+    <Value number="1">214137.000</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ContentTime" tag="00080033" vr="TM">
+    <Value number="1">033157.285</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="AccessionNumber" tag="00080050" vr="SH">
+    <Value number="1">MODIFIED</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="Modality" tag="00080060" vr="CS">
+    <Value number="1">SM</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="Manufacturer" tag="00080070" vr="LO">
+    <Value number="1">Roche Tissue Diagnostics</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ReferringPhysicianName" tag="00080090" vr="PN"/>
+  <DicomAttribute keyword="TimezoneOffsetFromUTC" tag="00080201" vr="SH"/>
+  <DicomAttribute keyword="ManufacturerModelName" tag="00081090" vr="LO">
+    <Value number="1">VENTANA DP 600</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="VolumetricProperties" tag="00089206" vr="CS">
+    <Value number="1">VOLUME</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PatientName" tag="00100010" vr="PN">
+    <PersonName number="1">
+      <Alphabetic>
+        <FamilyName>Zeta</FamilyName>
+        <GivenName>Zachary</GivenName>
+      </Alphabetic>
+    </PersonName>
+  </DicomAttribute>
+  <DicomAttribute keyword="PatientID" tag="00100020" vr="LO">
+    <Value number="1">ccbaf3d29596b6d2</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="IssuerOfPatientID" tag="00100021" vr="LO">
+    <Value number="1">DCM4CHEE.BAAD35D6.0BD17C2F</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="TypeOfPatientID" tag="00100022" vr="CS">
+    <Value number="1">TEXT</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA">
+    <Value number="1">19830606</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PatientSex" tag="00100040" vr="CS">
+    <Value number="1">M</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="DeviceSerialNumber" tag="00181000" vr="LO">
+    <Value number="1">6000009</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ManufacturerDeviceClassUID" tag="0018100B" vr="UI">
+    <Value number="1">2.16.840.1.113995.3.110.3.10118</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SoftwareVersions" tag="00181020" vr="LO">
+    <Value number="1">100979-d6b9803</Value>
+    <Value number="2">0092</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="StudyInstanceUID" tag="0020000D" vr="UI">
+    <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SeriesInstanceUID" tag="0020000E" vr="UI">
+    <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.258169</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="StudyID" tag="00200010" vr="SH">
+    <Value number="1">Case-F</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SeriesNumber" tag="00200011" vr="IS">
+    <Value number="1">1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="InstanceNumber" tag="00200013" vr="IS">
+    <Value number="1">1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="FrameOfReferenceUID" tag="00200052" vr="UI">
+    <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.258169.0.1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PositionReferenceIndicator" tag="00201040" vr="LO">
+    <Value number="1">SLIDE_CORNER</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="DimensionOrganizationSequence" tag="00209221" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="DimensionOrganizationUID" tag="00209164" vr="UI">
+        <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.258169.0.2</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="DimensionOrganizationType" tag="00209311" vr="CS">
+    <Value number="1">TILED_FULL</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SamplesPerPixel" tag="00280002" vr="US">
+    <Value number="1">3</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PhotometricInterpretation" tag="00280004" vr="CS">
+    <Value number="1">YBR_FULL_422</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PlanarConfiguration" tag="00280006" vr="US">
+    <Value number="1">0</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="NumberOfFrames" tag="00280008" vr="IS">
+    <Value number="1">1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="Rows" tag="00280010" vr="US">
+    <Value number="1">1280</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="Columns" tag="00280011" vr="US">
+    <Value number="1">1280</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="BitsAllocated" tag="00280100" vr="US">
+    <Value number="1">8</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="BitsStored" tag="00280101" vr="US">
+    <Value number="1">8</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="HighBit" tag="00280102" vr="US">
+    <Value number="1">7</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="PixelRepresentation" tag="00280103" vr="US">
+    <Value number="1">0</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="BurnedInAnnotation" tag="00280301" vr="CS">
+    <Value number="1">NO</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="LossyImageCompression" tag="00282110" vr="CS">
+    <Value number="1">01</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="LossyImageCompressionRatio" tag="00282112" vr="DS">
+    <Value number="1">10</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="LossyImageCompressionMethod" tag="00282114" vr="CS">
+    <Value number="1">ISO_10918_1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ContainerIdentifier" tag="00400512" vr="LO">
+    <Value number="1">PV22;ROC;Case-F;Slide-F-5</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="IssuerOfTheContainerIdentifierSequence" tag="00400513" vr="SQ"/>
+  <DicomAttribute keyword="ContainerTypeCodeSequence" tag="00400518" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="CodeValue" tag="00080100" vr="SH">
+        <Value number="1">433466003</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="SH">
+        <Value number="1">SCT</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+        <Value number="1">Microscope Slide</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="AcquisitionContextSequence" tag="00400555" vr="SQ"/>
+  <DicomAttribute keyword="SpecimenDescriptionSequence" tag="00400560" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="SpecimenIdentifier" tag="00400551" vr="LO">
+        <Value number="1">PV22;ROC;Case-F;Slide-F-5</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="SpecimenUID" tag="00400554" vr="UI">
+        <Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.114392</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="IssuerOfTheSpecimenIdentifierSequence" tag="00400562" vr="SQ"/>
+      <DicomAttribute keyword="SpecimenPreparationSequence" tag="00400610" vr="SQ"/>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="ImagedVolumeWidth" tag="00480001" vr="FL">
+    <Value number="1">14.878605</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ImagedVolumeHeight" tag="00480002" vr="FL">
+    <Value number="1">25.20021</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ImagedVolumeDepth" tag="00480003" vr="FL">
+    <Value number="1">0.001</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="TotalPixelMatrixColumns" tag="00480006" vr="UL">
+    <Value number="1">520</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="TotalPixelMatrixRows" tag="00480007" vr="UL">
+    <Value number="1">880</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="TotalPixelMatrixOriginSequence" tag="00480008" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="XOffsetInSlideCoordinateSystem" tag="0040072A" vr="DS">
+        <Value number="1">5.989978</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="YOffsetInSlideCoordinateSystem" tag="0040073A" vr="DS">
+        <Value number="1">30.823605</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="SpecimenLabelInImage" tag="00480010" vr="CS">
+    <Value number="1">NO</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="FocusMethod" tag="00480011" vr="CS">
+    <Value number="1">AUTO</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ExtendedDepthOfField" tag="00480012" vr="CS">
+    <Value number="1">NO</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ImageOrientationSlide" tag="00480102" vr="DS">
+    <Value number="1">1</Value>
+    <Value number="2">0</Value>
+    <Value number="3">0</Value>
+    <Value number="4">0</Value>
+    <Value number="5">-1</Value>
+    <Value number="6">0</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="OpticalPathSequence" tag="00480105" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="IlluminationTypeCodeSequence" tag="00220016" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="CodeValue" tag="00080100" vr="SH">
+            <Value number="1">111744</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="SH">
+            <Value number="1">DCM</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+            <Value number="1">Brightfield illumination</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+      <DicomAttribute keyword="ICCProfile" tag="00282000" vr="OB">
+        <BulkData uri="http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/bulkdata/00480105/0/00282000"/>
+      </DicomAttribute>
+      <DicomAttribute keyword="OpticalPathIdentifier" tag="00480106" vr="SH">
+        <Value number="1">1</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="IlluminationColorCodeSequence" tag="00480108" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="CodeValue" tag="00080100" vr="SH">
+            <Value number="1">414298005</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="SH">
+            <Value number="1">SCT</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+            <Value number="1">Full Spectrum</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="NumberOfOpticalPaths" tag="00480302" vr="UL">
+    <Value number="1">1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="TotalPixelMatrixFocalPlanes" tag="00480303" vr="UL">
+    <Value number="1">1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="LabelText" tag="22000002" vr="UT"/>
+  <DicomAttribute keyword="BarcodeValue" tag="22000005" vr="LT">
+    <Value number="1">PV22;ROC;Case-F;Slide-F-5</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SharedFunctionalGroupsSequence" tag="52009229" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="ReferencedImageSequence" tag="00081140" vr="SQ"/>
+      <DicomAttribute keyword="PixelMeasuresSequence" tag="00289110" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="SliceThickness" tag="00180050" vr="DS">
+            <Value number="1">0.001000</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="PixelSpacing" tag="00280030" vr="DS">
+            <Value number="1">0.029760</Value>
+            <Value number="2">0.029760</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+      <DicomAttribute keyword="WholeSlideMicroscopyImageFrameTypeSequence" tag="00400710" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="FrameType" tag="00089007" vr="CS">
+            <Value number="1">DERIVED</Value>
+            <Value number="2">PRIMARY</Value>
+            <Value number="3">VOLUME</Value>
+            <Value number="4">RESAMPLED</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="PixelData" tag="7FE00010" vr="OB">
+    <BulkData uri="http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/pixeldata"/>
+  </DicomAttribute>
+</NativeDicomModel>
