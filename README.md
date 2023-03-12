@@ -22,8 +22,8 @@ DICOMweb | DUL/DIMSE service
 ### History
 - 2003: [Supp 85: Web Access to DICOM Objects (WADO)](https://dicom.nema.org/medical/dicom/Final/sup85_ft.pdf)
 - 2010: [Medical Imaging Network Transport (MINT)](https://studylib.net/doc/5441544/mint-conformance---medical-imaging-network-transport)
-- 2011: [Supp 148: Web Access to DICOM Persistent Objects by Means of Web Services Extension of the Retrieve Service (WADO Web Service)](https://dicom.nema.org/medical/dicom/Final/sup161_ft.pdf)
-- 2011: [Supp 161: WADO by means of RESTful Services](https://dicom.nema.org/medical/dicom/Final/sup161_ft.pdf)
+- 2011: [Supp 148: WADO by means of Web Services (WADO-WS)](https://dicom.nema.org/medical/dicom/Final/sup161_ft.pdf)
+- 2011: [Supp 161: WADO by means of RESTful Services (WADO-RS)](https://dicom.nema.org/medical/dicom/Final/sup161_ft.pdf)
 - 2011: [Supp 163: Store Over the Web by RESTful Services (STOW-RS)](https://dicom.nema.org/medical/dicom/Final/sup163_ft3.pdf)
 - 2011: [Supp 166: Query based on ID for DICOM Objects by RESTful Services (QIDO-RS)](https://dicom.nema.org/medical/dicom/Final/sup166_ft5.pdf)
 - 2014: [Supp 171: Unified Procedure Step by REpresentational State Transfer (REST) Services](https://dicom.nema.org/medical/dicom/Final/sup172_ft2.pdf)
