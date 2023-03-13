@@ -117,7 +117,7 @@ time Attributes is applied by default (= without [extended Negotion of _combined
 
 #### Sample 1: Retrieve Rendered DICOM Image:
 ```console
-$ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
+$ curl -v -o image.jpg 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
 *   Trying 127.0.0.1:8080...
 * Connected to localhost (127.0.0.1) port 8080 (#0)
 > GET /dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1 HTTP/1.1
@@ -144,7 +144,7 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestT
 
 #### Sample 2: Retrieve compressed DICOM Part 10 file:
 ```console
-$ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1&contentType=application/dicom&transferSyntax=*'
+$ curl -v -o image.dcm 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1&contentType=application/dicom&transferSyntax=*'
 *   Trying 127.0.0.1:8080...
 > GET /dcm4chee-arc/aets/DCM4CHEE/wado?requestType=WADO&studyUID=2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604&seriesUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169&objectUID=2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1&contentType=application/dicom&transferSyntax=* HTTP/1.1
 > Host: localhost:8080
@@ -172,7 +172,7 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/wado?requestT
 
 #### Sample 1: Retrieve compressed DICOM Part 10 file:
 ```console
-$ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
+$ curl -v -o image.dcm.multipart 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1'
 *   Trying 127.0.0.1:8080...
 > GET /dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1 HTTP/1.1
 > Host: localhost:8080
@@ -194,20 +194,20 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.
 < Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
 < 
 { [16392 bytes data]
-* Connection #0 to host localhost left intact
 ```
 ```console
-$ head -n5 out
+$ cat image.dcm.multipart
 --9d056d4f-1f1a-4488-9760-581378378090
 Content-ID: <1e5b6b38-6fb4-4ba5-824c-e627cc8194ef@resteasy-multipart>
 Content-Type: application/dicom;transfer-syntax=1.2.840.10008.1.2.4.50
 
-DICMUL�OBUI1.2.840.10008.5.1.4.1.1.77.1.6UI22.16.840.1.113995.3.110.3.0.10118.6000009.258169.1UI1.2.840.10008.1.2.4.50UI1.2.40.0.13.1.3SHdcm4che-5.29CS DERIVED\PRIMARY\VOLUME\RESAMPLED2022101TM
+{BINARY DICOM DATA}
+--9d056d4f-1f1a-4488-9760-581378378090--
 ```
 
 #### Sample 2: Retrieve Rendered DICOM Image:
 ```console
-$ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/rendered'
+$ curl -v -o image.jpg 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/rendered'
 *   Trying 127.0.0.1:8080...
 > GET /dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1/rendered HTTP/1.1
 > Host: localhost:8080
@@ -229,7 +229,6 @@ $ curl -v -o out 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.
 < Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
 < 
 { [49176 bytes data]
-* Connection #0 to host localhost left intact
 ```
 
 #### Sample 3: Retrieve Metadata of DICOM Object
@@ -261,8 +260,131 @@ $ curl -v -H 'Accept: application/dicom+json' 'http://localhost:8080/dcm4chee-ar
 
 ### [STOW-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/STOW-RS)
 
-TODO
+#### Sample 1: Store DICOM Part 10 file:
 
+```console
+$ curl -v -H 'Content-Type: multipart/related; type="application/dicom"; boundary=9d056d4f-1f1a-4488-9760-581378378090' --data-binary @image.dcm.multipart http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies
+*   Trying 127.0.0.1:8080...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /dcm4chee-arc/aets/DCM4CHEE/rs/studies HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: multipart/related; type="application/dicom"; boundary=5f5a6fb5-9e5f-41fb-8248-3a44cf62f628
+> Content-Length: 1974996
+> Expect: 100-continue
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: origin, content-type, accept, authorization
+< Access-Control-Expose-Headers: content-type, warning
+< Date: Mon, 13 Mar 2023 20:46:24 GMT
+< Connection: keep-alive
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Credentials: true
+< Transfer-Encoding: chunked
+< Content-Type: application/dicom+xml
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
+< 
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve"><DicomAttribute keyword="RetrieveURL" tag="00081190" vr="UR"><Value number="1">http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604</Value></DicomAttribute><DicomAttribute keyword="ReferencedSOPSequence" tag="00081199" vr="SQ"><Item number="1"><DicomAttribute keyword="ReferencedSOPClassUID" tag="00081150" vr="UI"><Value number="1">1.2.840.10008.5.1.4.1.1.77.1.6</Value></DicomAttribute><DicomAttribute keyword="ReferencedSOPInstanceUID" tag="00081155" vr="UI"><Value number="1">2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1</Value></DicomAttribute><DicomAttribute keyword="RetrieveURL" tag="00081190" vr="UR"><Value number="1">http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.16.840.1.113995.3.110.3.0.10118.6000009.497166.721604/series/2.16.840.1.113995.3.110.3.0.10118.6000009.258169/instances/2.16.840.1.113995.3.110.3.0.10118.6000009.258169.1</Value></DicomAttribute></Item></DicomAttribute></NativeDicomModel>
+```
+
+#### Sample 2: Store PDF Document with DICOM Metadata in XML Format:
+
+Pack DICOM Metadata and PDF in multipart/related payload:
+```console
+$ cat doc.multipart
+--myboundary
+Content-Type: application/dicom+xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+    <DicomAttribute keyword="SOPClassUID" tag="00080016" vr="UI">
+        <Value number="1">1.2.840.10008.5.1.4.1.1.104.1</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="SOPInstanceUID" tag="00080018" vr="UI">
+        <Value number="1">2.25.51802425333713119956607409902530115960</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="StudyDate" tag="00080020" vr="DA"/>
+    <DicomAttribute keyword="ContentDate" tag="00080023" vr="DA"/>
+    <DicomAttribute keyword="AcquisitionDateTime" tag="0008002A" vr="DT"/>
+    <DicomAttribute keyword="StudyTime" tag="00080030" vr="TM"/>
+    <DicomAttribute keyword="ContentTime" tag="00080033" vr="TM"/>
+    <DicomAttribute keyword="AccessionNumber" tag="00080050" vr="SH"/>
+    <DicomAttribute keyword="Modality" tag="00080060" vr="CS">
+        <Value number="1">DOC</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="ConversionType" tag="00080064" vr="CS">
+        <Value number="1">SD</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="Manufacturer" tag="00080070" vr="LO"/>
+    <DicomAttribute keyword="ReferringPhysicianName" tag="00080090" vr="PN"/>
+    <DicomAttribute keyword="PatientName" tag="00100010" vr="PN"/>
+    <DicomAttribute keyword="PatientID" tag="00100020" vr="LO"/>
+    <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA"/>
+    <DicomAttribute keyword="PatientSex" tag="00100040" vr="CS"/>
+    <DicomAttribute keyword="StudyInstanceUID" tag="0020000D" vr="UI">
+        <Value number="1">2.25.299595085805972591470156706746122302336</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="SeriesInstanceUID" tag="0020000E" vr="UI">
+        <Value number="1">2.25.323432514532647374371410389541835704109</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="StudyID" tag="00200010" vr="SH"/>
+    <DicomAttribute keyword="SeriesNumber" tag="00200011" vr="IS">
+        <Value number="1">1</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="InstanceNumber" tag="00200013" vr="IS">
+        <Value number="1">1</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="BurnedInAnnotation" tag="00280301" vr="CS">
+        <Value number="1">YES</Value>
+    </DicomAttribute>
+    <DicomAttribute keyword="ConceptNameCodeSequence" tag="0040A043" vr="SQ"/>
+    <DicomAttribute keyword="DocumentTitle" tag="00420010" vr="ST"/>
+    <DicomAttribute keyword="EncapsulatedDocument" tag="00420011" vr="OB">
+        <BulkData uri="bulk2.25.236273414892009727187587613562294401904"/>
+    </DicomAttribute>
+    <DicomAttribute keyword="MIMETypeOfEncapsulatedDocument" tag="00420012" vr="LO">
+        <Value number="1">application/pdf</Value>
+    </DicomAttribute>
+</NativeDicomModel>
+--myboundary
+Content-Type: application/pdf
+Content-Location: bulk2.25.236273414892009727187587613562294401904
+
+{BINARY PDF DATA}
+--myboundary--
+```
+
+```console
+$ curl -v -H 'Content-Type: multipart/related; type="application/dicom+xml"; boundary=myboundary' --data-binary @doc.multipart http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies
+*   Trying 127.0.0.1:8080...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /dcm4chee-arc/aets/DCM4CHEE/rs/studies HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: multipart/related; type="application/dicom+xml"; boundary=myboundary
+> Content-Length: 577214
+> 
+* We are completely uploaded and fine
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: origin, content-type, accept, authorization
+< Access-Control-Expose-Headers: content-type, warning
+< Date: Mon, 13 Mar 2023 21:31:34 GMT
+< Connection: keep-alive
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Credentials: true
+< Transfer-Encoding: chunked
+< Content-Type: application/dicom+xml
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
+< 
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve"><DicomAttribute keyword="RetrieveURL" tag="00081190" vr="UR"><Value number="1">http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.25.299595085805972591470156706746122302336</Value></DicomAttribute><DicomAttribute keyword="ReferencedSOPSequence" tag="00081199" vr="SQ"><Item number="1"><DicomAttribute keyword="ReferencedSOPClassUID" tag="00081150" vr="UI"><Value number="1">1.2.840.10008.5.1.4.1.1.104.1</Value></DicomAttribute><DicomAttribute keyword="ReferencedSOPInstanceUID" tag="00081155" vr="UI"><Value number="1">2.25.51802425333713119956607409902530115960</Value></DicomAttribute><DicomAttribute keyword="RetrieveURL" tag="00081190" vr="UR"><Value number="1">http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/2.25.299595085805972591470156706746122302336/series/2.25.323432514532647374371410389541835704109/instances/2.25.51802425333713119956607409902530115960</Value></DicomAttribute></Item></DicomAttribute></NativeDicomModel>
+```
 
 ### [UPS-RS](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS)
 
