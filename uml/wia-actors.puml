@@ -1,0 +1,5 @@
+@startuml
+skinparam componentStyle rectangle
+[Image Document Consumer] --> [Image Document Responser] : QIDO-RS Query\n[RAD-129]
+[Image Document Consumer] --> [Image Document Source] : WADO-RS Retrieve\n[RAD-107]
+@enduml

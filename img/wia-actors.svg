@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="177px" preserveAspectRatio="none" style="width:467px;height:177px;background:#FFFFFF;" version="1.1" viewBox="0 0 467 177" width="467px" zoomAndPan="magnify"><defs/><g><!--MD5=[81e32e864c309e27f1a5092d6c18b3c6]
+entity Image Document Consumer--><g id="elem_Image Document Consumer"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="220" x="130" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200" x="140" y="29.9951">Image Document Consumer</text></g><!--MD5=[c25c50f068f2dd8e2a53771029b9e7b1]
+entity Image Document Responser--><g id="elem_Image Document Responser"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="222" x="7" y="135"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="202" x="17" y="157.9951">Image Document Responser</text></g><!--MD5=[61c84fd78abca42116104fdeb0795e86]
+entity Image Document Source--><g id="elem_Image Document Source"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="197" x="264.5" y="135"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="274.5" y="157.9951">Image Document Source</text></g><!--MD5=[2543150f601656dcd94472c9144a826e]
+link Image Document Consumer to Image Document Responser--><g id="link_Image Document Consumer_Image Document Responser"><path d="M223.29,43.26 C201.12,66.16 161.99,106.56 138.19,131.15 " fill="none" id="Image Document Consumer-to-Image Document Responser" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="134.51,134.95,143.6515,131.2848,137.9952,131.3648,137.9152,125.7085,134.51,134.95" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99" x="195" y="86.0669">QIDO-RS Query</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="211" y="101.1997">[RAD-129]</text></g><!--MD5=[225c6ec9bcc9b8c900033dd59a97ae42]
+link Image Document Consumer to Image Document Source--><g id="link_Image Document Consumer_Image Document Source"><path d="M266.14,43.01 C278.01,51.34 291.86,61.95 303,73 C320.78,90.62 337.71,113.7 349.02,130.36 " fill="none" id="Image Document Consumer-to-Image Document Source" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="352.06,134.87,350.3574,125.1694,349.27,130.7208,343.7187,129.6334,352.06,134.87" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="330" y="86.0669">WADO-RS Retrieve</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="358" y="101.1997">[RAD-107]</text></g><!--MD5=[8e5b51074670c4c2c776b5b9ae943e2c]
+@startuml
+skinparam componentStyle rectangle
+[Image Document Consumer] - -> [Image Document Responser] : QIDO-RS Query\n[RAD-129]
+[Image Document Consumer] - -> [Image Document Source] : WADO-RS Retrieve\n[RAD-107]
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

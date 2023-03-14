@@ -1,0 +1,4 @@
+@startuml
+skinparam componentStyle rectangle
+[Image Capturer] --> [Image Manager] : Store Instances over\nthe Web [RAD-108]
+@enduml

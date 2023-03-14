@@ -1,0 +1,20 @@
+@startuml
+participant "Imaging Document Consumer" as IDC
+participant "Imaging Document Responder" as IDR
+participant "Imaging Document Source" as IDS
+
+IDC->IDC: //Select Patient//
+IDC->IDR: QIDO-RS Query [RAD-129]\n(request studies for selected patient)
+activate IDR
+IDR-->IDC: Return query results (including retrieve location references)
+deactivate IDR
+
+IDC->IDC: //Select study to retrieve//
+
+IDC->IDS: WADO-RS Retrieve [RAD-107] for study/series/instances
+activate IDS
+IDS-->IDC: Return images
+deactivate IDS
+
+IDC->IDC: //Show Images//
+@enduml
