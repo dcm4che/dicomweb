@@ -3037,7 +3037,8 @@
           "multipart/related;type=\"text/xml\"": {},
           "multipart/related;type=\"video/mpeg\"": {},
           "multipart/related;type=\"video/mp4\"": {},
-          "multipart/related;type=\"video/H265\"": {}
+          "multipart/related;type=\"video/H265\"": {},
+          "application/dicom": {}
         }
       },
       "retrievedMetadata": {
