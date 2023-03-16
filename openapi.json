@@ -2733,7 +2733,19 @@
           "text/plain",
           "text/xml",
           "text/rtf",
-          "application/pdf"
+          "application/pdf",
+          "multipart/related;type=\"image/jpeg\"",
+          "multipart/related;type=\"image/gif\"",
+          "multipart/related;type=\"image/png\"",
+          "multipart/related;type=\"image/jp2\"",
+          "multipart/related;type=\"video/mpeg\"",
+          "multipart/related;type=\"video/mp4\"",
+          "multipart/related;type=\"video/H265\"",
+          "multipart/related;type=\"text/html\"",
+          "multipart/related;type=\"text/plain\"",
+          "multipart/related;type=\"text/xml\"",
+          "multipart/related;type=\"text/rtf\"",
+          "multipart/related;type=\"application/pdf\""
         ]
       },
       "rendered-media-type-wc": {
@@ -2751,7 +2763,19 @@
           "text/plain",
           "text/xml",
           "text/rtf",
-          "application/pdf"
+          "application/pdf",
+          "multipart/related;type=\"image/jpeg\"",
+          "multipart/related;type=\"image/gif\"",
+          "multipart/related;type=\"image/png\"",
+          "multipart/related;type=\"image/jp2\"",
+          "multipart/related;type=\"video/mpeg\"",
+          "multipart/related;type=\"video/mp4\"",
+          "multipart/related;type=\"video/H265\"",
+          "multipart/related;type=\"text/html\"",
+          "multipart/related;type=\"text/plain\"",
+          "multipart/related;type=\"text/xml\"",
+          "multipart/related;type=\"text/rtf\"",
+          "multipart/related;type=\"application/pdf\""
         ]
       },
       "thumbnail-media-type": {
@@ -2785,7 +2809,8 @@
           "multipart/related;type=\"video/mp4\"",
           "multipart/related;type=\"video/H265\"",
           "multipart/related;type=\"text/xml\"",
-          "multipart/related;type=\"application/pdf\""
+          "multipart/related;type=\"application/pdf\"",
+          "application/dicom"
         ]
       },
       "retrieve-media-type-wc": {
@@ -2803,7 +2828,8 @@
           "multipart/related;type=\"video/mp4\"",
           "multipart/related;type=\"video/H265\"",
           "multipart/related;type=\"text/xml\"",
-          "multipart/related;type=\"application/pdf\""
+          "multipart/related;type=\"application/pdf\"",
+          "application/dicom"
         ]
       },
       "pixeldata-media-type": {
