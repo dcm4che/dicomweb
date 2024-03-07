@@ -704,3 +704,5 @@ s. [WIA Integration with XDS-I or MHD, Video by Kinson Ho, 2018](https://www.you
 - [Weasis](https://nroduit.github.io/en/)
 - [DCM4CHEE Archive UI](https://github.com/dcm4che/dcm4chee-arc-light/wiki)
 - [J4Care Viewer](https://www.j4care.com/smooth-viewer.html)
+
+### [DICOMWeb Worklist Services (UPS-RS)](DICOMWeb_HL7_DICOM_Austria_2023.md)
