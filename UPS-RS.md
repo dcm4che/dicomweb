@@ -278,3 +278,9 @@ defines 10 Transactions
 #### [Unsubscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.11)
 #### [Suspend Global Subscription Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.12)
 #### [Send Workitem Event Report Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.13)
+
+### IHE Profile making use of UPS-RS
+- [Encounter-Based Imaging Workflow (EBIW) for "Lightweight Modalities"](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
+- [AI Workflow for Imaging (AIW-I)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
+- [Post-Acquisition Workflow (PAWF)](https://www.ihe.net/Technical_Framework/upload/IHE_RAD_Suppl_PAWF_Rev1-1_TI_2012-06-15.pdf)
+- [Radiology Remote Reading Workflow (RRR-WF)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Supp_RRR-WF.pdf)
