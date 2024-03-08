@@ -178,77 +178,78 @@
 
 Defines 4 different SOP Classes bundling usage specific combinations of operations:
 
-- [Unified Procedure Step - **Push** SOP Class](#unified-procedure-step-push-sop-class)
-- [Unified Procedure Step - **Pull** SOP Class](#unified-procedure-step-pull-sop-class)
-- [Unified Procedure Step - **Watch** SOP Class](#unified-procedure-step-watch-sop-class)
-- [Unified Procedure Step - **Event** SOP Class](#unified-procedure-step-event-sop-class)
-- [Unified Procedure Step - **Query** SOP Class](#unified-procedure-step-query-sop-class)
+- [Unified Procedure Step - **Push** SOP Class](#unified-procedure-step---push-sop-class)
+- [Unified Procedure Step - **Pull** SOP Class](#unified-procedure-step---pull-sop-class)
+- [Unified Procedure Step - **Watch** SOP Class](#unified-procedure-step---watch-sop-class)
+- [Unified Procedure Step - **Event** SOP Class](#unified-procedure-step---event-sop-class)
+- [Unified Procedure Step - **Query** SOP Class](#unified-procedure-step---query-sop-class)
  
 #### Unified Procedure Step - Push SOP Class
 
-  | Operation (DIMSE)             | Usage SCU/SCP |
-  |-------------------------------|---------------|
-  | Create UPS (N-CREATE)         | M/M           |
-  | Request UPS Cancel (N-ACTION) | U/M           |
-  | Get UPS Information (N-GET)   | U/M           |
+| Operation (DIMSE)             | Usage SCU/SCP |
+|-------------------------------|---------------|
+| Create UPS (N-CREATE)         | M/M           |
+| Request UPS Cancel (N-ACTION) | U/M           |
+| Get UPS Information (N-GET)   | U/M           |
 
 #### Unified Procedure Step - Pull SOP Class
 
-  | Operation (DIMSE)           | Usage SCU/SCP |
-  |-----------------------------|---------------|
-  | Search for UPS (C-FIND)     | M/M           |
-  | Get UPS Information (N-GET) | M/M           |
-  | Update UPS (N-SET)          | M/M           |
-  | Change UPS State (N-ACTION) | M/M           |
+| Operation (DIMSE)           | Usage SCU/SCP |
+|-----------------------------|---------------|
+| Search for UPS (C-FIND)     | M/M           |
+| Get UPS Information (N-GET) | M/M           |
+| Update UPS (N-SET)          | M/M           |
+| Change UPS State (N-ACTION) | M/M           |
 
 
-  To take control of a `SCHEDULED` UPS, an SCU shall generate a Transaction UID and submit a state change to `IN PROGRESS`
-  including the Transaction UID in the submission. The SCU shall record and use the Transaction UID in future N-ACTION
-  and N-SET requests for that UPS instance.
+To take control of a `SCHEDULED` UPS, an SCU shall generate a Transaction UID and submit a state change to `IN PROGRESS`
+including the Transaction UID in the submission. The SCU shall record and use the Transaction UID in future N-ACTION
+and N-SET requests for that UPS instance.
 
-  | Attribute Name  | Tag         | Description                                                          |
-  |-----------------|-------------|----------------------------------------------------------------------|
-  | Transaction UID | (0008,1195) | UID to lock the UPS instance for getting processed by another actor. |
+| Attribute Name  | Tag         | Description                                                          |
+|-----------------|-------------|----------------------------------------------------------------------|
+| Transaction UID | (0008,1195) | UID to lock the UPS instance for getting processed by another actor. |
 
 #### Unified Procedure Step - Watch SOP Class
 
-  | Operation (DIMSE)                                | Usage SCU/SCP |
-  |--------------------------------------------------|---------------|
-  | Un/Subscribe to Receive Event Reports (N-ACTION) | M/M           |
-  | Get UPS Information (N-GET)                      | M/M           |
-  | Search fo UPS (C-FIND)                           | U/M           |
-  | Request UPS Cancel (N-ACTION)                    | U/M           |
+| Operation (DIMSE)                                | Usage SCU/SCP |
+|--------------------------------------------------|---------------|
+| Un/Subscribe to Receive Event Reports (N-ACTION) | M/M           |
+| Get UPS Information (N-GET)                      | M/M           |
+| Search fo UPS (C-FIND)                           | U/M           |
+| Request UPS Cancel (N-ACTION)                    | U/M           |
 
-  An SCU may Subscribe/Unsubscribe to Receive UPS Event Reports
-  - for an individual UPS instance
-  - for all UPS instances ("Global Subscription")
-  - for a subset of UPS instances matching specified keys ("Filtered Global Subscription")
+An SCU may Subscribe/Unsubscribe to Receive UPS Event Reports
+- for an individual UPS instance
+- for all UPS instances ("Global Subscription")
+- for a subset of UPS instances matching specified keys ("Filtered Global Subscription")
 
-  To subscribe to Receive UPS Event Reports, the N-ACTION SCU has to specify
+To subscribe to Receive UPS Event Reports, the N-ACTION SCU has to specify
 
-  | Attribute Name | Tag         | Attribute Description                                                                             |
-  |----------------|-------------|---------------------------------------------------------------------------------------------------|
-  | Receiving AE   | (0074,1234) | AE Title of the N-EVENT-REPORT SCU to which UPS Event Reports shall be sent.                      |
-  | Deletion Lock  | (0074,1230) | Indicates if `COMPLETED` or `CANCELED` UPS instances shall **not** be deleted. `TRUE` or `FALSE`. |
+| Attribute Name | Tag         | Attribute Description                                                                             |
+|----------------|-------------|---------------------------------------------------------------------------------------------------|
+| Receiving AE   | (0074,1234) | AE Title of the N-EVENT-REPORT SCU to which UPS Event Reports shall be sent.                      |
+| Deletion Lock  | (0074,1230) | Indicates if `COMPLETED` or `CANCELED` UPS instances shall **not** be deleted. `TRUE` or `FALSE`. |
 
 #### Unified Procedure Step - Event SOP Class
 
-  | Operation (DIMSE)                              | Usage SCU/SCP |
-  |------------------------------------------------|---------------|
-  | Report a Change in UPS Status (N-EVENT-REPORT) | M/M           |
+| Operation (DIMSE)                              | Usage SCU/SCP |
+|------------------------------------------------|---------------|
+| Report a Change in UPS Status (N-EVENT-REPORT) | M/M           |
 
-  Event Types:
+Event Types:
 
-  | Event Type Name      | Trigger                                                                                                                                                                                                                                                       |
-  |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | UPS State Report     | - new UPS instance created <br> - change of _Procedure Step State (0074,1000)_ <br> - change of _Input Readiness State (0040,4041)_                                                                                                                           |
-  | UPS Cancel Requested | receive Request UPS Cancel (N-ACTION)                                                                                                                                                                                                                       |
-  | UPS Assigned         | - new UPS instance created <br> - change of _Scheduled Station Name Code Sequence (0040,4025)_ <br> - change of _Scheduled Human Performers Sequence (0040,4034)_                                                                                             |
-  | UPS Progress Report  | - change of _Procedure Step Progress (0074,1004)_ <br> - change of _Procedure Step Progress Description (0074,1006)_ <br> - change of _Procedure Step Communications URI Sequence (0074,1008)_                                                                |
-  | SCP Status Change    | restart of the SCP, specifying <br> - _SCP Status (0074,1242)_: `GOING DOWN` or `RESTARTED` <br> - _Subscription List Status (0074,1244)_: `WARM START` or `COLD START` <br> - _Unified Procedure Step List Status (0074,1246)_: `WARM START` or `COLD START` |
+| Event Type Name      | Trigger                                                                                                                                                                                                                                                       |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UPS State Report     | - new UPS instance created <br> - change of _Procedure Step State (0074,1000)_ <br> - change of _Input Readiness State (0040,4041)_                                                                                                                           |
+| UPS Cancel Requested | receive Request UPS Cancel (N-ACTION)                                                                                                                                                                                                                       |
+| UPS Assigned         | - new UPS instance created <br> - change of _Scheduled Station Name Code Sequence (0040,4025)_ <br> - change of _Scheduled Human Performers Sequence (0040,4034)_                                                                                             |
+| UPS Progress Report  | - change of _Procedure Step Progress (0074,1004)_ <br> - change of _Procedure Step Progress Description (0074,1006)_ <br> - change of _Procedure Step Communications URI Sequence (0074,1008)_                                                                |
+| SCP Status Change    | restart of the SCP, specifying <br> - _SCP Status (0074,1242)_: `GOING DOWN` or `RESTARTED` <br> - _Subscription List Status (0074,1244)_: `WARM START` or `COLD START` <br> - _Unified Procedure Step List Status (0074,1246)_: `WARM START` or `COLD START` |
 
 #### Unified Procedure Step - Query SOP Class
 
-  | Operation (DIMSE)      | Usage SCU/SCP |
-  |------------------------|---------------|
-  | Search fo UPS (C-FIND) | M/M           |
+| Operation (DIMSE)      | Usage SCU/SCP |
+|------------------------|---------------|
+| Search fo UPS (C-FIND) | M/M           |
+
