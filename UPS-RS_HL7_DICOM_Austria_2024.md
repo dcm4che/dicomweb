@@ -80,8 +80,8 @@
 | \>>Coding Scheme Designator                         | (0008,0102) | The identifier of the coding scheme in which the Coded Entry is defined.                                                            |
 | \>>Code Meaning                                     | (0008,0104) | Text that conveys the meaning of the Coded Entry.                                                                                   |
 | Scheduled Procedure Step Start DateTime             | (0040,4005) | Date and time at which the Procedure Step is scheduled to start.                                                                    |
-| Scheduled Procedure Step Expiration DateTime        | (0040,4008) | Date and time after which the Procedure Step is meaningless or undesirable.                                                         |
 | Expected Completion DateTime                        | (0040,4011) | Date and time at which the Procedure Step  is expected to be completed.                                                             |
+| Scheduled Procedure Step Expiration DateTime        | (0040,4008) | Date and time after which the Procedure Step is meaningless or undesirable.                                                         |
 | Input Readiness State                               | (0040,4034) | Readiness state of the Input Information Sequence (0040,4021) and the referenced Instances. `INCOMPLETE`, `UNAVAILABLE` or `READY`. |
 | Input Information Sequence                          | (0040,4021) | References to Information Objects needed to perform the scheduled Procedure Step.                                                   |
 | \>Type of Instances                                 | (0040,E020) | Type of object Instances referenced. `DICOM`, `CDA`, ..                                                                             |
@@ -118,6 +118,7 @@
 | Procedure Step State                         | (0074,1000) | State of the Procedure Step. `SCHEDULED`, `IN PROGRESS`, `CANCELED` or `COMPLETED`.                                         |
 | Progress Information Sequence                | (0074,1002) | Information about work progress for the Procedure Step.                                                                     |
 | \>Procedure Step Progress                    | (0074,1004) | A numerical indicator of progress expressed as percentage complete.                                                         |
+| \>Procedure Step Progress Description        | (0074,1006) | A textual description of progress.                                                                                          |
 | \>Procedure Step Communications URI Sequence | (0074,1008) | Contact Information to communicate with performers of the Procedure Step.                                                   |
 | \>>Contact URI                               | (0074,100A) | URI to communicate with performer of the procedure in progress.                                                             |
 | \>>Contact Display Name                      | (0074,100C) | Name of the person, department or organization to contact for more information about the performance of the Procedure Step. |
@@ -177,7 +178,13 @@
 
 Defines 4 different SOP Classes bundling usage specific combinations of operations:
 
-- Unified Procedure Step - **Push** SOP Class
+- [Unified Procedure Step - **Push** SOP Class](#unified-procedure-step-push-sop-class)
+- [Unified Procedure Step - **Pull** SOP Class](#unified-procedure-step-pull-sop-class)
+- [Unified Procedure Step - **Watch** SOP Class](#unified-procedure-step-watch-sop-class)
+- [Unified Procedure Step - **Event** SOP Class](#unified-procedure-step-event-sop-class)
+- [Unified Procedure Step - **Query** SOP Class](#unified-procedure-step-query-sop-class)
+ 
+#### Unified Procedure Step - Push SOP Class
 
   | Operation (DIMSE)             | Usage SCU/SCP |
   |-------------------------------|---------------|
@@ -185,7 +192,7 @@ Defines 4 different SOP Classes bundling usage specific combinations of operatio
   | Request UPS Cancel (N-ACTION) | U/M           |
   | Get UPS Information (N-GET)   | U/M           |
 
-- Unified Procedure Step - **Pull** SOP Class
+#### Unified Procedure Step - Pull SOP Class
 
   | Operation (DIMSE)           | Usage SCU/SCP |
   |-----------------------------|---------------|
@@ -194,7 +201,16 @@ Defines 4 different SOP Classes bundling usage specific combinations of operatio
   | Update UPS (N-SET)          | M/M           |
   | Change UPS State (N-ACTION) | M/M           |
 
-- Unified Procedure Step - **Watch** SOP Class
+
+  To take control of a `SCHEDULED` UPS, an SCU shall generate a Transaction UID and submit a state change to `IN PROGRESS`
+  including the Transaction UID in the submission. The SCU shall record and use the Transaction UID in future N-ACTION
+  and N-SET requests for that UPS instance.
+
+  | Attribute Name  | Tag         | Description                                                          |
+  |-----------------|-------------|----------------------------------------------------------------------|
+  | Transaction UID | (0008,1195) | UID to lock the UPS instance for getting processed by another actor. |
+
+#### Unified Procedure Step - Watch SOP Class
 
   | Operation (DIMSE)                                | Usage SCU/SCP |
   |--------------------------------------------------|---------------|
@@ -203,13 +219,35 @@ Defines 4 different SOP Classes bundling usage specific combinations of operatio
   | Search fo UPS (C-FIND)                           | U/M           |
   | Request UPS Cancel (N-ACTION)                    | U/M           |
 
-- Unified Procedure Step - **Event** SOP Class
+  An SCU may Subscribe/Unsubscribe to Receive UPS Event Reports
+  - for an individual UPS instance
+  - for all UPS instances ("Global Subscription")
+  - for a subset of UPS instances matching specified keys ("Filtered Global Subscription")
+
+  To subscribe to Receive UPS Event Reports, the N-ACTION SCU has to specify
+
+  | Attribute Name | Tag         | Attribute Description                                                                             |
+  |----------------|-------------|---------------------------------------------------------------------------------------------------|
+  | Receiving AE   | (0074,1234) | AE Title of the N-EVENT-REPORT SCU to which UPS Event Reports shall be sent.                      |
+  | Deletion Lock  | (0074,1230) | Indicates if `COMPLETED` or `CANCELED` UPS instances shall **not** be deleted. `TRUE` or `FALSE`. |
+
+#### Unified Procedure Step - Event SOP Class
 
   | Operation (DIMSE)                              | Usage SCU/SCP |
   |------------------------------------------------|---------------|
   | Report a Change in UPS Status (N-EVENT-REPORT) | M/M           |
 
-- Unified Procedure Step - **Query** SOP Class
+  Event Types:
+
+  | Event Type Name      | Trigger                                                                                                                                                                                                                                                       |
+  |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | UPS State Report     | - new UPS instance created <br> - change of _Procedure Step State (0074,1000)_ <br> - change of _Input Readiness State (0040,4041)_                                                                                                                           |
+  | UPS Cancel Requested | receive Request UPS Cancel (N-ACTION)                                                                                                                                                                                                                       |
+  | UPS Assigned         | - new UPS instance created <br> - change of _Scheduled Station Name Code Sequence (0040,4025)_ <br> - change of _Scheduled Human Performers Sequence (0040,4034)_                                                                                             |
+  | UPS Progress Report  | - change of _Procedure Step Progress (0074,1004)_ <br> - change of _Procedure Step Progress Description (0074,1006)_ <br> - change of _Procedure Step Communications URI Sequence (0074,1008)_                                                                |
+  | SCP Status Change    | restart of the SCP, specifying <br> - _SCP Status (0074,1242)_: `GOING DOWN` or `RESTARTED` <br> - _Subscription List Status (0074,1244)_: `WARM START` or `COLD START` <br> - _Unified Procedure Step List Status (0074,1246)_: `WARM START` or `COLD START` |
+
+#### Unified Procedure Step - Query SOP Class
 
   | Operation (DIMSE)      | Usage SCU/SCP |
   |------------------------|---------------|
