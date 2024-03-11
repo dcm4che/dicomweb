@@ -1,10 +1,11 @@
 ## UPS-RS
 
 ### Timeline of DICOM Specifications of Workflow Services
-- 1993: [ACR-NEMA PS 3.4-1993: Detached Patient/Study/Results Management Service Classes](https://dicom.nema.org/medical/dicom/1992-1995/PS3.4_1993.pdf)
+- 1993: [ACR-NEMA PS 3.4-1993: Detached Patient/Study/Results Management and Basic Study Content Notification Service Classes](https://dicom.nema.org/medical/dicom/1992-1995/PS3.4_1993.pdf)
 - 1993: [Supp 10: Basic Worklist Management - Modality](https://dicom.nema.org/medical/dicom/Final/sup09_ft.pdf)) 
 - 1996: [Supp 17: Modality Performed Procedure Step](https://dicom.nema.org/medical/dicom/Final/sup17_ft.pdf)
 - 2000: [Supp 52: General Purpose Worklist](https://dicom.nema.org/medical/dicom/Final/sup52_ft.pdf)
+- 2003: [Supp 93: Instance Availability Notification](https://dicom.nema.org/medical/dicom/Final/sup93_ft.pdf)
 - 2004: [Supp 98: Retirement of Detached, Standalone and other Services](https://dicom.nema.org/medical/dicom/Final/sup98_ft.pdf)
 - 2009: [Supp 96: Unified Worklist and Procedure Step](https://dicom.nema.org/medical/dicom/Final/sup96_ft.pdf)
 - 2011: [Supp 158: Retirement of General Purpose Worklist and Procedure Step](https://dicom.nema.org/medical/dicom/Final/sup158_ft.pdf)
@@ -255,7 +256,7 @@ Event Types:
 
 ### [Worklist Service and Resources (DICOMWeb)](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#chapter_11)
 
-defines 10 Transactions
+defines [10 Transactions](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS)
 
 - [Create Workitem Transaction](#create-workitem-transaction)
 - [Retrieve Workitem Transaction](#retrieve-workitem-transaction)
@@ -266,20 +267,400 @@ defines 10 Transactions
 - [Subscribe Transaction](#subscribe-transaction)
 - [Unsubscribe Transaction](#unsubscribe-transaction)
 - [Suspend Global Subscription Transaction](#suspend-global-subscription-transaction)
-- [Send Workitem Event Report Transaction](#send-workitem-event-report-transaction)
+- [Send Workitem Event Report Transaction](#send-workitem-event-report-transaction) (via WebSocket)
 
 #### [Create Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.4)
+
+[POST {baseURL}/workitems\[?workitem={workitem}\]](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/CreateWorkitem)
+
+Workitem in payload encoded in
+- `application/dicom+xml`
+- `application/dicom+json`
+- (`application/dicom`).
+> The Workitem in the payload shall comply with all Instance requirements in the Req. Type N-CREATE column of
+> [Table CC.2.5-3 “UPS SOP Class N-CREATE/N-SET/N-GET/C-FIND Attributes” in PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#table_CC.2.5-3).
+
+E.g.:
+```console
+$ curl -vH 'Content-Type: application/dicom+xml' -d@- http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="AdmittingDiagnosesDescription" tag="00081080" vr="LO"/>
+  <DicomAttribute keyword="AdmittingDiagnosesCodeSequence" tag="00081084" vr="SQ"/>
+  <DicomAttribute keyword="PatientName" tag="00100010" vr="PN"/>
+  <DicomAttribute keyword="PatientID" tag="00100020" vr="LO"/>
+  <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA"/>
+  <DicomAttribute keyword="PatientSex" tag="00100040" vr="CS"/>
+  <DicomAttribute keyword="OtherPatientIDsSequence" tag="00101002" vr="SQ"/>
+  <DicomAttribute keyword="AdmissionID" tag="00380010" vr="LO"/>
+  <DicomAttribute keyword="IssuerOfAdmissionIDSequence" tag="00380014" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepStartDateTime" tag="00404005" vr="DT">
+    <Value number="1">20240311112739.303640</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
+  <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
+  <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
+    <Value number="1">READY</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ReferencedRequestSequence" tag="0040A370" vr="SQ"/>
+  <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
+    <Value number="1">SCHEDULED</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepProgressInformationSequence" tag="00741002" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepPriority" tag="00741200" vr="CS">
+    <Value number="1">MEDIUM</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="WorklistLabel" tag="00741202" vr="LO">
+    <Value number="1">WORKLIST</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepLabel" tag="00741204" vr="LO">
+    <Value number="1">DEFAULT</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledProcessingParametersSequence" tag="00741210" vr="SQ"/>
+  <DicomAttribute keyword="UnifiedProcedureStepPerformedProcedureSequence" tag="00741216" vr="SQ"/>
+</NativeDicomModel>
+EOF
+
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/ HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: application/dicom+xml
+> Content-Length: 2015
+> 
+
+< HTTP/1.1 201 Created
+< Location: http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/2.25.68891579261869033145962963425485462514
+```
+
+Or with `application/dicom+json` encoded Workitem and specified SOP Instance UID:
+
+E.g.:
+```console
+$ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?workitem=1.2.3.4 << EOF
+[
+  {
+    "00081080": {
+      "vr": "LO"
+    },
+    "00081084": {
+      "vr": "SQ"
+    },
+    "00100010": {
+      "vr": "PN"
+    },
+    "00100020": {
+      "vr": "LO"
+    },
+    "00100030": {
+      "vr": "DA"
+    },
+    "00100040": {
+      "vr": "CS"
+    },
+    "00101002": {
+      "vr": "SQ"
+    },
+    "00380010": {
+      "vr": "LO"
+    },
+    "00380014": {
+      "vr": "SQ"
+    },
+    "00404005": {
+      "vr": "DT",
+      "Value": [
+        "20240311112739.303640"
+      ]
+    },
+    "00404018": {
+      "vr": "SQ"
+    },
+    "00404021": {
+      "vr": "SQ"
+    },
+    "00404041": {
+      "vr": "CS",
+      "Value": [
+        "READY"
+      ]
+    },
+    "0040A370": {
+      "vr": "SQ"
+    },
+    "00741000": {
+      "vr": "CS",
+      "Value": [
+        "SCHEDULED"
+      ]
+    },
+    "00741002": {
+      "vr": "SQ"
+    },
+    "00741200": {
+      "vr": "CS",
+      "Value": [
+        "MEDIUM"
+      ]
+    },
+    "00741202": {
+      "vr": "LO",
+      "Value": [
+        "WORKLIST"
+      ]
+    },
+    "00741204": {
+      "vr": "LO",
+      "Value": [
+        "DEFAULT"
+      ]
+    },
+    "00741210": {
+      "vr": "SQ"
+    },
+    "00741216": {
+      "vr": "SQ"
+    }
+  }
+]
+EOF
+
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/ HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: application/dicom+json
+> Content-Length: 1086
+> 
+
+< HTTP/1.1 201 Created
+< Location: http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 
+```
+
 #### [Retrieve Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.5)
+
+[GET {baseURL}/workitems/{workitem}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RetrieveWorkitem)
+
+E.g.:
+```console
+$ curl -v -H "Accept: application/dicom+xml" http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | xmllint - --format
+> GET /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: application/dicom+xml
+> 
+
+< HTTP/1.1 200 OK
+< Date: Mon, 11 Mar 2024 12:52:15 GMT
+< Transfer-Encoding: chunked
+< Content-Type: application/dicom+xml
+< 
+{ [2380 bytes data]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="SOPClassUID" tag="00080016" vr="UI">
+    <Value number="1">1.2.840.10008.5.1.4.34.6.1</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="SOPInstanceUID" tag="00080018" vr="UI">
+    <Value number="1">1.2.3.4</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="AdmittingDiagnosesDescription" tag="00081080" vr="LO"/>
+  <DicomAttribute keyword="AdmittingDiagnosesCodeSequence" tag="00081084" vr="SQ"/>
+  <DicomAttribute keyword="PatientName" tag="00100010" vr="PN"/>
+  <DicomAttribute keyword="PatientID" tag="00100020" vr="LO"/>
+  <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA"/>
+  <DicomAttribute keyword="PatientSex" tag="00100040" vr="CS"/>
+  <DicomAttribute keyword="OtherPatientIDsSequence" tag="00101002" vr="SQ"/>
+  <DicomAttribute keyword="AdmissionID" tag="00380010" vr="LO"/>
+  <DicomAttribute keyword="IssuerOfAdmissionIDSequence" tag="00380014" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepStartDateTime" tag="00404005" vr="DT">
+    <Value number="1">20240311112739.303640</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledProcedureStepModificationDateTime" tag="00404010" vr="DT">
+    <Value number="1">20240311112739.303640</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
+  <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
+  <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
+    <Value number="1">READY</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ReferencedRequestSequence" tag="0040A370" vr="SQ"/>
+  <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
+    <Value number="1">SCHEDULED</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepProgressInformationSequence" tag="00741002" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepPriority" tag="00741200" vr="CS">
+    <Value number="1">MEDIUM</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="WorklistLabel" tag="00741202" vr="LO">
+    <Value number="1">WORKLIST</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepLabel" tag="00741204" vr="LO">
+    <Value number="1">DEFAULT</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledProcessingParametersSequence" tag="00741210" vr="SQ"/>
+  <DicomAttribute keyword="UnifiedProcedureStepPerformedProcedureSequence" tag="00741216" vr="SQ"/>
+</NativeDicomModel>
+```
+
+Or with `application/dicom+json` encoded Workitem:
+```console
+$ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | jq
+> GET /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: application/dicom+json
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Mon, 11 Mar 2024 12:54:34 GMT
+< Transfer-Encoding: chunked
+< Content-Type: application/dicom+json
+< 
+{ [787 bytes data]
+
+[
+  {
+    "00080016": {
+      "vr": "UI",
+      "Value": [
+        "1.2.840.10008.5.1.4.34.6.1"
+      ]
+    },
+    "00080018": {
+      "vr": "UI",
+      "Value": [
+        "1.2.3.4"
+      ]
+    },
+    "00081080": {
+      "vr": "LO"
+    },
+    "00081084": {
+      "vr": "SQ"
+    },
+    "00100010": {
+      "vr": "PN"
+    },
+    "00100020": {
+      "vr": "LO"
+    },
+    "00100030": {
+      "vr": "DA"
+    },
+    "00100040": {
+      "vr": "CS"
+    },
+    "00101002": {
+      "vr": "SQ"
+    },
+    "00380010": {
+      "vr": "LO"
+    },
+    "00380014": {
+      "vr": "SQ"
+    },
+    "00404005": {
+      "vr": "DT",
+      "Value": [
+        "20240311112739.303640"
+      ]
+    },
+    "00404010": {
+      "vr": "DT",
+      "Value": [
+        "20240311112739.303640"
+      ]
+    },
+    "00404018": {
+      "vr": "SQ"
+    },
+    "00404021": {
+      "vr": "SQ"
+    },
+    "00404041": {
+      "vr": "CS",
+      "Value": [
+        "READY"
+      ]
+    },
+    "0040A370": {
+      "vr": "SQ"
+    },
+    "00741000": {
+      "vr": "CS",
+      "Value": [
+        "SCHEDULED"
+      ]
+    },
+    "00741002": {
+      "vr": "SQ"
+    },
+    "00741200": {
+      "vr": "CS",
+      "Value": [
+        "MEDIUM"
+      ]
+    },
+    "00741202": {
+      "vr": "LO",
+      "Value": [
+        "WORKLIST"
+      ]
+    },
+    "00741204": {
+      "vr": "LO",
+      "Value": [
+        "DEFAULT"
+      ]
+    },
+    "00741210": {
+      "vr": "SQ"
+    },
+    "00741216": {
+      "vr": "SQ"
+    }
+  }
+]
+```
+
 #### [Update Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.6)
+
+[POST {baseURL}/workitems/{workitem}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UpdateWorkitem)
+
 #### [Change Workitem State](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.7)
+
+[PUT {baseURL}/workitems/{workitem}/state/{requestor}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
+
 #### [Request Cancellation](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.8)
+
+[POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
+
 #### [Search Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.9)
+
+[GET {baseURL}/workitems](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SearchForWorkitems)
+
 #### [Subscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.10)
+
+- [POST {baseURL}/workitems/{workitem}/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorkitem) - Subscribe to Workitem
+- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorklist) - Subscribe to Worklist
+- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeFilteredWorklist) - Subscribe to Filtered Worklist
+
 #### [Unsubscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.11)
+
+- [DELETE {baseURL}/workitems/{workitem}/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorkitem) - Unsubscribe from Workitem
+- [DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorklist) - Unsubscribe from Worklist
+- [DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeFilteredWorklist) - Unsubscribe from Filtered Worklist
+
 #### [Suspend Global Subscription Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.12)
+
+- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}/suspend](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionWorklist) - Suspend Subscription from Worklist
+- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}/suspend](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionFilteredWorklist) - Suspend Subscription from Filtered Worklist
+
 #### [Send Workitem Event Report Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.13)
 
-### IHE Profile making use of UPS-RS
+### IHE Profiles making use of UPS-RS
 - [Encounter-Based Imaging Workflow (EBIW) for "Lightweight Modalities"](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
 - [AI Workflow for Imaging (AIW-I)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
 - [Post-Acquisition Workflow (PAWF)](https://www.ihe.net/Technical_Framework/upload/IHE_RAD_Suppl_PAWF_Rev1-1_TI_2012-06-15.pdf)
