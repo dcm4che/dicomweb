@@ -283,11 +283,12 @@ Workitem in payload encoded in
 
 E.g.:
 ```console
-$ curl -vH 'Content-Type: application/dicom+xml' -d@- http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems << EOF
+$ cat >> create-ups.xml << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <NativeDicomModel xml:space="preserve">
   <DicomAttribute keyword="AdmittingDiagnosesDescription" tag="00081080" vr="LO"/>
   <DicomAttribute keyword="AdmittingDiagnosesCodeSequence" tag="00081084" vr="SQ"/>
+  <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI"/>
   <DicomAttribute keyword="PatientName" tag="00100010" vr="PN"/>
   <DicomAttribute keyword="PatientID" tag="00100020" vr="LO"/>
   <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA"/>
@@ -301,7 +302,7 @@ $ curl -vH 'Content-Type: application/dicom+xml' -d@- http://localhost:8080/dcm4
   <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
   <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
   <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
-    <Value number="1">READY</Value>
+    <Value number="1">UNAVAILABLE</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ReferencedRequestSequence" tag="0040A370" vr="SQ"/>
   <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
@@ -312,22 +313,24 @@ $ curl -vH 'Content-Type: application/dicom+xml' -d@- http://localhost:8080/dcm4
     <Value number="1">MEDIUM</Value>
   </DicomAttribute>
   <DicomAttribute keyword="WorklistLabel" tag="00741202" vr="LO">
-    <Value number="1">WORKLIST</Value>
+    <Value number="1">WorklistX</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ProcedureStepLabel" tag="00741204" vr="LO">
-    <Value number="1">DEFAULT</Value>
+    <Value number="1">TaskY</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledProcessingParametersSequence" tag="00741210" vr="SQ"/>
   <DicomAttribute keyword="UnifiedProcedureStepPerformedProcedureSequence" tag="00741216" vr="SQ"/>
 </NativeDicomModel>
 EOF
-
+```
+```console
+$ curl -vH 'Content-Type: application/dicom+xml' -d @create-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems
 > POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/ HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
 > Accept: */*
 > Content-Type: application/dicom+xml
-> Content-Length: 2015
+> Content-Length: 2125
 > 
 
 < HTTP/1.1 201 Created
@@ -338,7 +341,7 @@ Or with `application/dicom+json` encoded Workitem and specified SOP Instance UID
 
 E.g.:
 ```console
-$ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?workitem=1.2.3.4 << EOF
+$ cat >> create-ups.json << EOF
 [
   {
     "00081080": {
@@ -346,6 +349,9 @@ $ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm
     },
     "00081084": {
       "vr": "SQ"
+    },
+    "00081195": {
+      "vr": "UI"
     },
     "00100010": {
       "vr": "PN"
@@ -383,7 +389,7 @@ $ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm
     "00404041": {
       "vr": "CS",
       "Value": [
-        "READY"
+        "UNAVAILABLE"
       ]
     },
     "0040A370": {
@@ -407,13 +413,13 @@ $ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm
     "00741202": {
       "vr": "LO",
       "Value": [
-        "WORKLIST"
+        "WorklistX"
       ]
     },
     "00741204": {
       "vr": "LO",
       "Value": [
-        "DEFAULT"
+        "TaskY"
       ]
     },
     "00741210": {
@@ -425,13 +431,15 @@ $ curl -vH 'Content-Type: application/dicom+json' -d@- http://localhost:8080/dcm
   }
 ]
 EOF
-
+```
+```console
+$ curl -vH 'Content-Type: application/dicom+json' -d @create-ups.json http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?workitem=1.2.3.4
 > POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/ HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
 > Accept: */*
 > Content-Type: application/dicom+json
-> Content-Length: 1086
+> Content-Length: 1130
 > 
 
 < HTTP/1.1 201 Created
@@ -444,7 +452,7 @@ EOF
 
 E.g.:
 ```console
-$ curl -v -H "Accept: application/dicom+xml" http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | xmllint - --format
+$ curl -v -H 'Accept: application/dicom+xml' http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | xmllint - --format
 > GET /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
@@ -484,7 +492,7 @@ $ curl -v -H "Accept: application/dicom+xml" http://localhost:8080/dcm4chee-arc/
   <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
   <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
   <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
-    <Value number="1">READY</Value>
+    <Value number="1">UNAVAILABLE</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ReferencedRequestSequence" tag="0040A370" vr="SQ"/>
   <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
@@ -495,10 +503,10 @@ $ curl -v -H "Accept: application/dicom+xml" http://localhost:8080/dcm4chee-arc/
     <Value number="1">MEDIUM</Value>
   </DicomAttribute>
   <DicomAttribute keyword="WorklistLabel" tag="00741202" vr="LO">
-    <Value number="1">WORKLIST</Value>
+    <Value number="1">WorklistX</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ProcedureStepLabel" tag="00741204" vr="LO">
-    <Value number="1">DEFAULT</Value>
+    <Value number="1">TaskY</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledProcessingParametersSequence" tag="00741210" vr="SQ"/>
   <DicomAttribute keyword="UnifiedProcedureStepPerformedProcedureSequence" tag="00741216" vr="SQ"/>
@@ -507,7 +515,7 @@ $ curl -v -H "Accept: application/dicom+xml" http://localhost:8080/dcm4chee-arc/
 
 Or with `application/dicom+json` encoded Workitem:
 ```console
-$ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | jq
+$ curl -v -H 'Accept: application/dicom+json' http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 | jq
 > GET /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
@@ -583,7 +591,7 @@ $ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc
     "00404041": {
       "vr": "CS",
       "Value": [
-        "READY"
+        "UNAVAILABLE"
       ]
     },
     "0040A370": {
@@ -607,13 +615,13 @@ $ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc
     "00741202": {
       "vr": "LO",
       "Value": [
-        "WORKLIST"
+        "WorklistX"
       ]
     },
     "00741204": {
       "vr": "LO",
       "Value": [
-        "DEFAULT"
+        "TaskY"
       ]
     },
     "00741210": {
@@ -634,6 +642,44 @@ $ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc
 
 - [**`PUT {baseURL}/workitems/{workitem}/state/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
 
+with
+
+| Attribue Name         | Tag          | Description                                                                    |
+|-----------------------|--------------|--------------------------------------------------------------------------------|
+| Transaction UID       | (0008,1195)  | UID to lock the UPS instance for getting processed by another actor.           |
+| Procedure Step State  | (0074,1000)  | Changed State of the Procedure Step. `IN PROGRESS`, `CANCELED` or `COMPLETED`. |
+
+in the Payload.
+
+E.g.:
+```console
+$ cat >> claim-ups.xml << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI">
+    <Value number="1">1.2.3.4.5</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
+    <Value number="1">IN PROGRESS</Value>
+  </DicomAttribute>
+</NativeDicomModel>
+EOF
+```
+```console
+$ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/performerAET
+> PUT /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/performerAET HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-type: application/dicom+xml
+> Content-Length: 359
+> Expect: 100-continue
+
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 200 OK
+```
+
 #### [Request Cancellation](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.8)
 
 - [**`POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
@@ -641,6 +687,37 @@ $ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc
 #### [Search Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.9)
 
 - [**`GET {baseURL}/workitems`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SearchForWorkitems)
+
+>For each matching Workitem, the origin server shall include in the results:
+>
+>    All Unified Procedure Step Instance Attributes in [Table CC.2.5-3 “UPS SOP Class N-CREATE/N-SET/N-GET/C-FIND Attributes” in PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#table_CC.2.5-3) with a Return Key Type of 1 or 2.
+
+E.g. query for all Workitems in progress encoded in `multipart/related;type="application/dicom+xml"`:
+```console
+$ curl -v -H 'Accept: multipart/related;type="application/dicom+xml"' http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?ProcedureStepState=IN+PROGRESS
+> GET /dcm4chee-arc/aets/WORKLIST/rs/workitems HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: multipart/related;type="application/dicom+xml"
+> 
+< HTTP/1.1 200 OK
+< Transfer-Encoding: chunked
+< Content-Type: multipart/related;start="<8b92a7b6-e986-4410-9b89-31739df4244c@resteasy-multipart>";type="application/dicom+xml"; boundary=b6d926b6-bf80-4e65-9836-b62ae3aec781
+< 
+{ [3723 bytes data]
+--b6d926b6-bf80-4e65-9836-b62ae3aec781
+Content-ID: <8b92a7b6-e986-4410-9b89-31739df4244c@resteasy-multipart>
+Content-Type: application/dicom+xml
+
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...
+--b6a6c4c0-adfd-40ea-a530-ad4683cb6e47
+Content-ID: <1e05cd68-3100-45c2-9281-0c833cc094ea@resteasy-multipart>
+Content-Type: application/dicom+xml
+
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...
+:
+--b6a6c4c0-adfd-40ea-a530-ad4683cb6e47--
+```
 
 #### [Subscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.10)
 
