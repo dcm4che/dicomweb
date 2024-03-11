@@ -271,12 +271,13 @@ defines [10 Transactions](https://petstore.swagger.io/index.html?url=https://dcm
 
 #### [Create Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.4)
 
-[POST {baseURL}/workitems\[?workitem={workitem}\]](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/CreateWorkitem)
+[**`POST {baseURL}/workitems\[?workitem={workitem}\]`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/CreateWorkitem)
 
 Workitem in payload encoded in
 - `application/dicom+xml`
 - `application/dicom+json`
 - (`application/dicom`).
+
 > The Workitem in the payload shall comply with all Instance requirements in the Req. Type N-CREATE column of
 > [Table CC.2.5-3 “UPS SOP Class N-CREATE/N-SET/N-GET/C-FIND Attributes” in PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#table_CC.2.5-3).
 
@@ -439,7 +440,7 @@ EOF
 
 #### [Retrieve Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.5)
 
-[GET {baseURL}/workitems/{workitem}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RetrieveWorkitem)
+- [**`GET {baseURL}/workitems/{workitem}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RetrieveWorkitem)
 
 E.g.:
 ```console
@@ -627,36 +628,36 @@ $ curl -v -H "Accept: application/dicom+json" http://localhost:8080/dcm4chee-arc
 
 #### [Update Workitem Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.6)
 
-[POST {baseURL}/workitems/{workitem}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UpdateWorkitem)
+- [**`POST {baseURL}/workitems/{workitem}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UpdateWorkitem)
 
 #### [Change Workitem State](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.7)
 
-[PUT {baseURL}/workitems/{workitem}/state/{requestor}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
+- [**`PUT {baseURL}/workitems/{workitem}/state/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
 
 #### [Request Cancellation](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.8)
 
-[POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
+- [**`POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
 
 #### [Search Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.9)
 
-[GET {baseURL}/workitems](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SearchForWorkitems)
+- [**`GET {baseURL}/workitems`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SearchForWorkitems)
 
 #### [Subscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.10)
 
-- [POST {baseURL}/workitems/{workitem}/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorkitem) - Subscribe to Workitem
-- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorklist) - Subscribe to Worklist
-- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeFilteredWorklist) - Subscribe to Filtered Worklist
+- [**`POST {baseURL}/workitems/{workitem}/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorkitem) - Subscribe to Workitem
+- [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorklist) - Subscribe to Worklist
+- [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeFilteredWorklist) - Subscribe to Filtered Worklist
 
 #### [Unsubscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.11)
 
-- [DELETE {baseURL}/workitems/{workitem}/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorkitem) - Unsubscribe from Workitem
-- [DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorklist) - Unsubscribe from Worklist
-- [DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeFilteredWorklist) - Unsubscribe from Filtered Worklist
+- [**`DELETE {baseURL}/workitems/{workitem}/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorkitem) - Unsubscribe from Workitem
+- [**`DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorklist) - Unsubscribe from Worklist
+- [**`DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeFilteredWorklist) - Unsubscribe from Filtered Worklist
 
 #### [Suspend Global Subscription Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.12)
 
-- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}/suspend](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionWorklist) - Suspend Subscription from Worklist
-- [POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}/suspend](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionFilteredWorklist) - Suspend Subscription from Filtered Worklist
+- [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}/suspend`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionWorklist) - Suspend Subscription from Worklist
+- [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}/suspend`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionFilteredWorklist) - Suspend Subscription from Filtered Worklist
 
 #### [Send Workitem Event Report Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.13)
 
