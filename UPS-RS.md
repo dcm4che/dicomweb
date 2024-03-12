@@ -638,6 +638,52 @@ $ curl -v -H 'Accept: application/dicom+json' http://localhost:8080/dcm4chee-arc
 
 - [**`POST {baseURL}/workitems/{workitem}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UpdateWorkitem)
 
+```console
+$ cat >> update-ups.xml << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="TypeOfInstances" tag="0040E020" vr="CS">
+        <Value number="1">DICOM</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="StudyInstanceUID" tag="0020000D" vr="UI">
+        <Value number="1">1.2.3.4.5</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="SeriesInstanceUID" tag="0020000E" vr="UI">
+        <Value number="1">1.2.3.4.5.6</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="ReferencedSOPSequence" tag="00081199" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="Referenced SOP Class UID" tag="00081150" vr="UI">
+            <Value number="1">1.2.840.10008.5.1.4.1.1.1</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="ReferencedSOPInstanceUID" tag="00081155" vr="UI">
+            <Value number="1">1.2.3.4.5.6.7</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
+    <Value number="1">READY</Value>
+  </DicomAttribute>
+</NativeDicomModel>
+EOF
+```
+```console
+$ curl -vH 'Content-Type: application/dicom+xml' -d @update-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: application/dicom+xml
+> Content-Length: 2125
+> 
+
+< HTTP/1.1 201 Created
+< Location: http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/2.25.68891579261869033145962963425485462514
+```
 #### [Change Workitem State](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.7)
 
 - [**`PUT {baseURL}/workitems/{workitem}/state/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
@@ -657,7 +703,7 @@ $ cat >> claim-ups.xml << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <NativeDicomModel xml:space="preserve">
   <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI">
-    <Value number="1">1.2.3.4.5</Value>
+    <Value number="1">1.2.3.4.5.6.7.8</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
     <Value number="1">IN PROGRESS</Value>
@@ -666,7 +712,7 @@ $ cat >> claim-ups.xml << EOF
 EOF
 ```
 ```console
-$ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/performerAET
+$ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/UPSSCU
 > PUT /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/performerAET HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
@@ -674,7 +720,7 @@ $ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://local
 > Content-type: application/dicom+xml
 > Content-Length: 359
 > Expect: 100-continue
-
+>
 < HTTP/1.1 100 Continue
 * We are completely uploaded and fine
 < HTTP/1.1 200 OK
@@ -683,6 +729,16 @@ $ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://local
 #### [Request Cancellation](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.8)
 
 - [**`POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
+
+```console
+$ curl -v -X POST 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/cancelrequest/CANCEL_REQUESTOR'
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/cancelrequest/CANCEL_REQUESTOR HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+< HTTP/1.1 202 Accepted
+```
 
 #### [Search Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.9)
 
@@ -709,12 +765,12 @@ $ curl -v -H 'Accept: multipart/related;type="application/dicom+xml"' http://loc
 Content-ID: <8b92a7b6-e986-4410-9b89-31739df4244c@resteasy-multipart>
 Content-Type: application/dicom+xml
 
-<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</<NativeDicomModel>
 --b6a6c4c0-adfd-40ea-a530-ad4683cb6e47
 Content-ID: <1e05cd68-3100-45c2-9281-0c833cc094ea@resteasy-multipart>
 Content-Type: application/dicom+xml
 
-<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</<NativeDicomModel>
 :
 --b6a6c4c0-adfd-40ea-a530-ad4683cb6e47--
 ```
@@ -725,18 +781,222 @@ Content-Type: application/dicom+xml
 - [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeWorklist) - Subscribe to Worklist
 - [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SubscribeFilteredWorklist) - Subscribe to Filtered Worklist
 
+E.g. subscribe `UPSSCU` with Deletion Lock to receive Event Reports related to UPS instances with
+_Worklist Label (0074,1202)_ = `WorklistX`:
+```console
+$ curl -v -X POST 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU?deletionlock=true&WorklistLabel=WorklistX'
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU?deletionlock=true&WorklistLabel=WorklistX HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+< HTTP/1.1 201 Created
+< Location: ws://localhost:8080/dcm4chee-arc/aets/WORKLIST/ws/subscribers/UPSSCU
+```
+
 #### [Unsubscribe Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.11)
 
 - [**`DELETE {baseURL}/workitems/{workitem}/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorkitem) - Unsubscribe from Workitem
 - [**`DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeWorklist) - Unsubscribe from Worklist
 - [**`DELETE {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UnsubscribeFilteredWorklist) - Unsubscribe from Filtered Worklist
 
+E.g. Delete Subscription of `UPSSCU` from Filtered Worklist:
+```console
+$ curl -v -X DELETE 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU'
+> DELETE /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+```
+
 #### [Suspend Global Subscription Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.12)
 
 - [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5/subscribers/{subscriber}/suspend`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionWorklist) - Suspend Subscription from Worklist
 - [**`POST {baseURL}/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/{subscriber}/suspend`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/SuspendSubscriptionFilteredWorklist) - Suspend Subscription from Filtered Worklist
 
+E.g. Suspend Subscription of `UPSSCU` from Filtered Worklist:
+```console
+$ curl -v -X POST 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU/suspend'
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.840.10008.5.1.4.34.5.1/subscribers/UPSSCU/suspend HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+```
+
 #### [Send Workitem Event Report Transaction](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.13)
+
+A client has to open a Web Socket connection, to be able to receive Event Reports encoded in `application/dicom+json`,
+e.g.:
+```console
+$ wscat -c  ws://localhost:8080/dcm4chee-arc/aets/WORKLIST/ws/subscribers/UPSSCU
+Connected (press CTRL+C to quit)
+```
+
+E.g. Event Report on create of new UPS instance: 
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      2
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      1
+    ]
+  },
+  "00404041": {
+    "vr": "CS",
+    "Value": [
+      "UNAVAILABLE"
+    ]
+  },
+  "00741000": {
+    "vr": "CS",
+    "Value": [
+      "SCHEDULED"
+    ]
+  }
+}
+```
+
+E.g. Event Report on update of _InputReadinessState (0040,4041)_ of UPS instance to `"READY"`:
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      3
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      1
+    ]
+  },
+  "00404041": {
+    "vr": "CS",
+    "Value": [
+      "READY"
+    ]
+  },
+  "00741000": {
+    "vr": "CS",
+    "Value": [
+      "SCHEDULED"
+    ]
+  }
+}
+```
+
+E.g. Event Report on change of _Procedure Step State (0074,1000)_ of UPS instance to `"IN PROGRESS"`:
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      4
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      1
+    ]
+  },
+  "00404041": {
+    "vr": "CS",
+    "Value": [
+      "READY"
+    ]
+  },
+  "00741000": {
+    "vr": "CS",
+    "Value": [
+      "IN PROGRESS"
+    ]
+  }
+}
+```
+
+E.g. Event Report on Request Cancellation of UPS instance by _Requesting AE (0074,1236)_ `"CANCEL_REQUESTOR"`.
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      5
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      2
+    ]
+  },
+  "00741236": {
+    "vr": "AE",
+    "Value": [
+      "CANCEL_REQUESTOR"
+    ]
+  }
+}
+```
 
 ### IHE Profiles making use of UPS-RS
 - [Encounter-Based Imaging Workflow (EBIW) for "Lightweight Modalities"](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
