@@ -1418,7 +1418,7 @@ E.g.:
   - Actors
     - Encounter Manager
     - Lightweight Modality
-  - Transactions
+  - Transaction
     - RAD-130: Get Encounter Imaging Context (MWL or UPS-RS) with [mappings from MWL attributes to UPS attributes](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf#page=61).
 - [AI Workflow for Imaging (AIW-I), Rev. 1.1 – 2020-08-06](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
   - Same Actors and Transactions as Radiology Remote Reading Workflow (RRR-WF)
