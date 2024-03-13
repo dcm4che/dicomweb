@@ -500,7 +500,7 @@ EOF
 ```
 ```console
 $ curl -vH 'Content-Type: application/dicom+json' -d @create-ups.json http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?workitem=1.2.3.4
-> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/ HTTP/1.1
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems?workitem=1.2.3.4 HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
 > Accept: */*
@@ -921,7 +921,7 @@ $ curl -v -X POST 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems
 E.g. query for all Workitems in progress encoded in `multipart/related;type="application/dicom+xml"`:
 ```console
 $ curl -v -H 'Accept: multipart/related;type="application/dicom+xml"' http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems?ProcedureStepState=IN+PROGRESS
-> GET /dcm4chee-arc/aets/WORKLIST/rs/workitems HTTP/1.1
+> GET /dcm4chee-arc/aets/WORKLIST/rs/workitems?ProcedureStepState=IN+PROGRESS HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
 > Accept: multipart/related;type="application/dicom+xml"
