@@ -1,0 +1,28 @@
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="TypeOfInstances" tag="0040E020" vr="CS">
+        <Value number="1">DICOM</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="StudyInstanceUID" tag="0020000D" vr="UI">
+        <Value number="1">1.2.3.4.5</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="SeriesInstanceUID" tag="0020000E" vr="UI">
+        <Value number="1">1.2.3.4.5.6</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="ReferencedSOPSequence" tag="00081199" vr="SQ">
+        <Item number="1">
+          <DicomAttribute keyword="Referenced SOP Class UID" tag="00081150" vr="UI">
+            <Value number="1">1.2.840.10008.5.1.4.1.1.1</Value>
+          </DicomAttribute>
+          <DicomAttribute keyword="ReferencedSOPInstanceUID" tag="00081155" vr="UI">
+            <Value number="1">1.2.3.4.5.6.7</Value>
+          </DicomAttribute>
+        </Item>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
+    <Value number="1">READY</Value>
+  </DicomAttribute>
+</NativeDicomModel>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="AdmittingDiagnosesDescription" tag="00081080" vr="LO"/>
+  <DicomAttribute keyword="AdmittingDiagnosesCodeSequence" tag="00081084" vr="SQ"/>
+  <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI"/>
+  <DicomAttribute keyword="PatientName" tag="00100010" vr="PN"/>
+  <DicomAttribute keyword="PatientID" tag="00100020" vr="LO"/>
+  <DicomAttribute keyword="PatientBirthDate" tag="00100030" vr="DA"/>
+  <DicomAttribute keyword="PatientSex" tag="00100040" vr="CS"/>
+  <DicomAttribute keyword="OtherPatientIDsSequence" tag="00101002" vr="SQ"/>
+  <DicomAttribute keyword="AdmissionID" tag="00380010" vr="LO"/>
+  <DicomAttribute keyword="IssuerOfAdmissionIDSequence" tag="00380014" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepStartDateTime" tag="00404005" vr="DT">
+    <Value number="1">20240311112739.303640</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
+  <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationNameCodeSequence" tag="00404025" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="CodeValue" tag="00080100" vr="LO">
+        <Value number="1">STATION-XY</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="LO">
+        <Value number="1">99UPSRSDEMO24</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+        <Value number="1">Station XY</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledStationClassCodeSequence" tag="00404026" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationGeographicLocationCodeSequence" tag="00404027" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledHumanPerformersSequenceCodeSequence" tag="00404034" vr="SQ"/>
+  <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
+    <Value number="1">UNAVAILABLE</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ReferencedRequestSequence" tag="0040A370" vr="SQ"/>
+  <DicomAttribute keyword="ProcedureStepState" tag="00741000" vr="CS">
+    <Value number="1">SCHEDULED</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepProgressInformationSequence" tag="00741002" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledProcedureStepPriority" tag="00741200" vr="CS">
+    <Value number="1">MEDIUM</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="WorklistLabel" tag="00741202" vr="LO">
+    <Value number="1">WorklistX</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepLabel" tag="00741204" vr="LO">
+    <Value number="1">TaskY</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledProcessingParametersSequence" tag="00741210" vr="SQ"/>
+  <DicomAttribute keyword="UnifiedProcedureStepPerformedProcedureSequence" tag="00741216" vr="SQ"/>
+</NativeDicomModel>

@@ -80,6 +80,8 @@
 | \>>Code Value                                       | (0008,0100) | The identifier of the Coded Entry.                                                                                                  |
 | \>>Coding Scheme Designator                         | (0008,0102) | The identifier of the coding scheme in which the Coded Entry is defined.                                                            |
 | \>>Code Meaning                                     | (0008,0104) | Text that conveys the meaning of the Coded Entry.                                                                                   |
+| \>Human Performer's Name                            | (0040,4037) | Name of the human performer.                                                                                                        |
+| \>Human Performer's Organization                    | (0040,4036) | Organization to which the human performer is accountable for the activities in the Procedure Step.                                  |
 | Scheduled Procedure Step Start DateTime             | (0040,4005) | Date and time at which the Procedure Step is scheduled to start.                                                                    |
 | Expected Completion DateTime                        | (0040,4011) | Date and time at which the Procedure Step  is expected to be completed.                                                             |
 | Scheduled Procedure Step Expiration DateTime        | (0040,4008) | Date and time after which the Procedure Step is meaningless or undesirable.                                                         |
@@ -301,6 +303,22 @@ $ cat >> create-ups.xml << EOF
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
   <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationNameCodeSequence" tag="00404025" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="CodeValue" tag="00080100" vr="LO">
+        <Value number="1">STATION-XY</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="LO">
+        <Value number="1">99UPSRSDEMO24</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+        <Value number="1">Station XY</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledStationClassCodeSequence" tag="00404026" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationGeographicLocationCodeSequence" tag="00404027" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledHumanPerformersSequenceCodeSequence" tag="00404034" vr="SQ"/>
   <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
     <Value number="1">UNAVAILABLE</Value>
   </DicomAttribute>
@@ -384,6 +402,44 @@ $ cat >> create-ups.json << EOF
       "vr": "SQ"
     },
     "00404021": {
+      "vr": "SQ"
+    },
+    "00404025": {
+      "vr": "SQ",
+      "Value": [
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "STATION-XY"
+            ]
+          }
+        },
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "99UPSRSDEMO24"
+            ]
+          }
+        },
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "Station XY"
+            ]
+          }
+        }
+      ]
+    },
+    "00404026": {
+      "vr": "SQ"
+    },
+    "00404027": {
+      "vr": "SQ"
+    },
+    "00404034": {
       "vr": "SQ"
     },
     "00404041": {
@@ -491,6 +547,22 @@ $ curl -v -H 'Accept: application/dicom+xml' http://localhost:8080/dcm4chee-arc/
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
   <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationNameCodeSequence" tag="00404025" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="CodeValue" tag="00080100" vr="LO">
+        <Value number="1">STATION-XY</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodingSchemeDesignator" tag="00080102" vr="LO">
+        <Value number="1">99UPSRSDEMO24</Value>
+      </DicomAttribute>
+      <DicomAttribute keyword="CodeMeaning" tag="00080104" vr="LO">
+        <Value number="1">Station XY</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+  <DicomAttribute keyword="ScheduledStationClassCodeSequence" tag="00404026" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledStationGeographicLocationCodeSequence" tag="00404027" vr="SQ"/>
+  <DicomAttribute keyword="ScheduledHumanPerformersSequenceCodeSequence" tag="00404034" vr="SQ"/>
   <DicomAttribute keyword="InputReadinessState" tag="00404041" vr="CS">
     <Value number="1">UNAVAILABLE</Value>
   </DicomAttribute>
@@ -588,6 +660,44 @@ $ curl -v -H 'Accept: application/dicom+json' http://localhost:8080/dcm4chee-arc
     "00404021": {
       "vr": "SQ"
     },
+    "00404025": {
+      "vr": "SQ",
+      "Value": [
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "STATION-XY"
+            ]
+          }
+        },
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "99UPSRSDEMO24"
+            ]
+          }
+        },
+        {
+          "00080100": {
+            "vr": "LO",
+            "Value": [
+              "Station XY"
+            ]
+          }
+        }
+      ]
+    },
+    "00404026": {
+      "vr": "SQ"
+    },
+    "00404027": {
+      "vr": "SQ"
+    },
+    "00404034": {
+      "vr": "SQ"
+    },
     "00404041": {
       "vr": "CS",
       "Value": [
@@ -638,6 +748,11 @@ $ curl -v -H 'Accept: application/dicom+json' http://localhost:8080/dcm4chee-arc
 
 - [**`POST {baseURL}/workitems/{workitem}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/UpdateWorkitem)
 
+> The request payload contains a dataset with the changes to the target Workitem. The dataset shall include all
+> elements that are to be modified. All modifications to the Workitem shall comply with all requirements described in
+> [Section CC.2.6.2 in PS3.4](https://dicom.nema.org/medical/dicom/current/output/html/part04.html#sect_CC.2.6.2).
+
+E.g.:
 ```console
 $ cat >> update-ups.xml << EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -726,9 +841,55 @@ $ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://local
 < HTTP/1.1 200 OK
 ```
 
+After changing the _Procedure Step State (0074,1000)_ to `IN PROGRESS`, the (matching)
+_Transaction UID (0008,1195)_ has also be specified for further updating the UPS instance.
+
+E.g.:
+```console
+$ cat >> progress-ups.xml << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI">
+    <Value number="1">1.2.3.4.5.6.7.8</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepProgressInformationSequence" tag="00741002" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="ProcedureStepProgress" tag="00741004" vr="DS">
+        <Value number="1">50</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+</NativeDicomModel>
+```
+```console
+$ curl -v -H 'Content-type: application/dicom+xml' -d @progress-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4
+> POST /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-type: application/dicom+xml
+> Content-Length: 505
+> 
+< HTTP/1.1 200 OK
+```
+
 #### [Request Cancellation](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.8)
 
 - [**`POST {baseURL}/workitems/{workitem}/cancelrequest/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/RequestWorkitemCancellation)
+
+Optionally 
+
+| Attribute Name                                      | Tag         | Description                                                                     |
+|-----------------------------------------------------|-------------|---------------------------------------------------------------------------------|
+| Reason For Cancellation                             | (0074,1238) | A textual description of the reason a procedure step was discontinued.          |
+| Procedure Step Discontinuation Reason Code Sequence | (0074,100E) | Coded Reason(s) for Discontinuing the Procedure Step.                           |
+| \>Code Value                                        | (0008,0100) | The identifier of the Coded Entry.                                              |
+| \>Coding Scheme Designator                          | (0008,0102) | The identifier of the coding scheme in which the Coded Entry is defined.        |
+| \>Code Meaning                                      | (0008,0104) | Text that conveys the meaning of the Coded Entry.                               |
+| Contact URI                                         | (0074,100A) | URI to communicate with the requestor                                           |
+| Contact Display Name                                | (0074,100C) | Name of the person, department or organization to contact for more information. |
+
+can be specified in the payload.
 
 ```console
 $ curl -v -X POST 'http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/cancelrequest/CANCEL_REQUESTOR'
@@ -836,7 +997,36 @@ $ wscat -c  ws://localhost:8080/dcm4chee-arc/aets/WORKLIST/ws/subscribers/UPSSCU
 Connected (press CTRL+C to quit)
 ```
 
-E.g. Event Report on create of new UPS instance: 
+There are 5 different types of Event Reports:
+
+- [UPS State Report](#ups-state-report)
+- [UPS Cancel Requested](#ups-cancel-requested)
+- [UPS Progress Report](#ups-progress-report)
+- [SCP Status Change](#scp-status-change)
+- [UPS Assigned](#ups-assigned)
+
+##### UPS State Report
+
+Triggered on
+- creation of new UPS instances 
+- change of _Procedure Step State (0074,1000)_
+- change of _Input Readiness State (0040,4041)_
+
+| Attribute Name                                      | Tag         | Required                         |
+|-----------------------------------------------------|-------------|----------------------------------|
+| Affected SOP Class UID                              | (0000,0002) | Y (= 1.2.840.10008.5.1.4.34.6.1) |
+| Message ID                                          | (0000,0101) | Y                                |
+| Affected SOP Instance UID                           | (0000,1000) | Y                                |
+| Event Type ID                                       | (0000,1000) | Y (= 1)                          |
+| Procedure Step State                                | (0074,1000) | Y                                |
+| Input Readiness State                               | (0040,4034) | Y                                |
+| Reason For Cancellation                             | (0074,1238) | C                                |
+| Procedure Step Discontinuation Reason Code Sequence | (0074,100E) | C                                |
+| \>Code Value                                        | (0008,0100) | C                                |
+| \>Coding Scheme Designator                          | (0008,0102) | C                                |
+| \>Code Meaning                                      | (0008,0104) | C                                |
+
+E.g.:
 ```json
 {
   "00000002": {
@@ -878,91 +1068,26 @@ E.g. Event Report on create of new UPS instance:
 }
 ```
 
-E.g. Event Report on update of _InputReadinessState (0040,4041)_ of UPS instance to `"READY"`:
-```json
-{
-  "00000002": {
-    "vr": "UI",
-    "Value": [
-      "1.2.840.10008.5.1.4.34.6.1"
-    ]
-  },
-  "00000110": {
-    "vr": "US",
-    "Value": [
-      3
-    ]
-  },
-  "00001000": {
-    "vr": "UI",
-    "Value": [
-      "1.2.3.4"
-    ]
-  },
-  "00001002": {
-    "vr": "US",
-    "Value": [
-      1
-    ]
-  },
-  "00404041": {
-    "vr": "CS",
-    "Value": [
-      "READY"
-    ]
-  },
-  "00741000": {
-    "vr": "CS",
-    "Value": [
-      "SCHEDULED"
-    ]
-  }
-}
-```
+##### UPS Cancel Requested
 
-E.g. Event Report on change of _Procedure Step State (0074,1000)_ of UPS instance to `"IN PROGRESS"`:
-```json
-{
-  "00000002": {
-    "vr": "UI",
-    "Value": [
-      "1.2.840.10008.5.1.4.34.6.1"
-    ]
-  },
-  "00000110": {
-    "vr": "US",
-    "Value": [
-      4
-    ]
-  },
-  "00001000": {
-    "vr": "UI",
-    "Value": [
-      "1.2.3.4"
-    ]
-  },
-  "00001002": {
-    "vr": "US",
-    "Value": [
-      1
-    ]
-  },
-  "00404041": {
-    "vr": "CS",
-    "Value": [
-      "READY"
-    ]
-  },
-  "00741000": {
-    "vr": "CS",
-    "Value": [
-      "IN PROGRESS"
-    ]
-  }
-}
-```
+Triggered on [Request Cancellation](#request-cancellation).
 
-E.g. Event Report on Request Cancellation of UPS instance by _Requesting AE (0074,1236)_ `"CANCEL_REQUESTOR"`.
+| Attribute Name                                      | Tag         | Required                           |
+|-----------------------------------------------------|-------------|------------------------------------|
+| Affected SOP Class UID                              | (0000,0002) | Y (= 1.2.840.10008.5.1.4.34.6.1)   |
+| Message ID                                          | (0000,0101) | Y                                  |
+| Affected SOP Instance UID                           | (0000,1000) | Y                                  |
+| Event Type ID                                       | (0000,1000) | Y (= 2)                            |
+| Requesting AE                                       | (0074,1236) | Y (= `{requestor}` path parameter) |
+| Reason For Cancellation                             | (0074,1238) | C (= copy request)                 |
+| Procedure Step Discontinuation Reason Code Sequence | (0074,100E) | C (= copy request)                 |
+| \>Code Value                                        | (0008,0100) | C (= copy request)                 |
+| \>Coding Scheme Designator                          | (0008,0102) | C (= copy request)                 |
+| \>Code Meaning                                      | (0008,0104) | C (= copy request)                 |
+| Contact URI                                         | (0074,100A) | C (= copy request)                 |
+| Contact Display Name                                | (0074,100C) | C (= copy request)                 |
+
+E.g.:
 ```json
 {
   "00000002": {
@@ -993,6 +1118,250 @@ E.g. Event Report on Request Cancellation of UPS instance by _Requesting AE (007
     "vr": "AE",
     "Value": [
       "CANCEL_REQUESTOR"
+    ]
+  }
+}
+```
+
+##### UPS Progress Report
+
+Triggered on
+- change of _Procedure Step Progress (0074,1004)_
+- change of _Procedure Step Progress Description (0074,1006)_
+- change of _Procedure Step Communications URI Sequence (0074,1008)_
+
+| Attribute Name                               | Tag         | Required                         |
+|----------------------------------------------|-------------|----------------------------------|
+| Affected SOP Class UID                       | (0000,0002) | Y (= 1.2.840.10008.5.1.4.34.6.1) |
+| Message ID                                   | (0000,0101) | Y                                |
+| Affected SOP Instance UID                    | (0000,1000) | Y                                |
+| Event Type ID                                | (0000,1000) | Y (= 3)                          |
+| Procedure Step Progress Information Sequence | (0074,1002) | Y                                |
+| \>Procedure Step Progress                    | (0074,1004) | C                                |
+| \>Procedure Step Progress Description        | (0074,1006) | C                                |
+| \>Procedure Step Communications URI Sequence | (0074,1008) | C                                |
+| \>>Contact URI                               | (0074,100A) | C                                |
+| \>>Contact Display Name                      | (0074,100C) | C                                |
+
+E.g.:
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      19
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      3
+    ]
+  },
+  "00741002": {
+    "vr": "SQ",
+    "Value": [
+      {
+        "00741004": {
+          "vr": "DS",
+          "Value": [
+            "50"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+##### SCP Status Change
+
+Triggered on
+- shutdown of the Worklist Service
+- restart of the Worklist Service
+
+| Attribute Name                     | Tag         | Required                           |
+|------------------------------------|-------------|------------------------------------|
+| Affected SOP Class UID             | (0000,0002) | Y (= 1.2.840.10008.5.1.4.34.6.1)   |
+| Message ID                         | (0000,0101) | Y                                  |
+| Affected SOP Instance UID          | (0000,1000) | Y                                  |
+| Event Type ID                      | (0000,1000) | Y (= 4)                            |
+| SCP Status                         | (0074,1242) | Y (= `GOING DOWN` or `RESTARTED`)  |
+| Subscription List Status           | (0074,1244) | C (= `WARM START` or `COLD START`) |
+| Unified Procedure Step List Status | (0074,1246) | C (= `WARM START` or `COLD START`) |
+
+E.g.:
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      25
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.5.1"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      4
+    ]
+  },
+  "00741242": {
+    "vr": "CS",
+    "Value": [
+      "GOING DOWN"
+    ]
+  }
+}
+```
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      29
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.5.1"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      4
+    ]
+  },
+  "00741242": {
+    "vr": "CS",
+    "Value": [
+      "RESTARTED"
+    ]
+  },
+  "00741244": {
+    "vr": "CS",
+    "Value": [
+      "WARM START"
+    ]
+  },
+  "00741246": {
+    "vr": "CS",
+    "Value": [
+      "WARM START"
+    ]
+  }
+}
+```
+
+##### UPS Assigned
+
+Triggered on
+- creation of new UPS instances with non-empty Scheduled Station Name Code Sequence (0040,4025)_ or
+  _Scheduled Human Performers Sequence (0040,4034)_
+- change of _Scheduled Station Name Code Sequence (0040,4025)_
+- change of _Scheduled Human Performers Sequence (0040,4034)_
+
+| Attribute Name                       | Tag         | Required                         |
+|--------------------------------------|-------------|----------------------------------|
+| Affected SOP Class UID               | (0000,0002) | Y (= 1.2.840.10008.5.1.4.34.6.1) |
+| Message ID                           | (0000,0101) | Y                                |
+| Affected SOP Instance UID            | (0000,1000) | Y                                |
+| Event Type ID                        | (0000,1000) | Y (= 5)                          |
+| Scheduled Station Name Code Sequence | (0040,4025) | C                                |
+| \>Code Value                         | (0008,0100) | C                                |
+| \>Coding Scheme Designator           | (0008,0102) | C                                |
+| \>Code Meaning                       | (0008,0104) | C                                |
+| Human Performer Code Sequence        | (0040,4009) | C                                |
+| \>Code Value                         | (0008,0100) | C                                |
+| \>Coding Scheme Designator           | (0008,0102) | C                                |
+| \>Code Meaning                       | (0008,0104) | C                                |
+| Human Performer's Organization       | (0040,4036) | C                                |
+
+E.g.:
+```json
+{
+  "00000002": {
+    "vr": "UI",
+    "Value": [
+      "1.2.840.10008.5.1.4.34.6.1"
+    ]
+  },
+  "00000110": {
+    "vr": "US",
+    "Value": [
+      15
+    ]
+  },
+  "00001000": {
+    "vr": "UI",
+    "Value": [
+      "1.2.3.4"
+    ]
+  },
+  "00001002": {
+    "vr": "US",
+    "Value": [
+      5
+    ]
+  },
+  "00404025": {
+    "vr": "SQ",
+    "Value": [
+      {
+        "00080100": {
+          "vr": "LO",
+          "Value": [
+            "STATION-XY"
+          ]
+        }
+      },
+      {
+        "00080100": {
+          "vr": "LO",
+          "Value": [
+            "99UPSRSDEMO24"
+          ]
+        }
+      },
+      {
+        "00080100": {
+          "vr": "LO",
+          "Value": [
+            "Station XY"
+          ]
+        }
+      }
     ]
   }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NativeDicomModel xml:space="preserve">
+  <DicomAttribute keyword="TransactionUID" tag="00081195" vr="UI">
+    <Value number="1">1.2.3.4.5.6.7.8</Value>
+  </DicomAttribute>
+  <DicomAttribute keyword="ProcedureStepProgressInformationSequence" tag="00741002" vr="SQ">
+    <Item number="1">
+      <DicomAttribute keyword="ProcedureStepProgress" tag="00741004" vr="DS">
+        <Value number="1">50</Value>
+      </DicomAttribute>
+    </Item>
+  </DicomAttribute>
+</NativeDicomModel>
