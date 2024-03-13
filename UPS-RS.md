@@ -11,6 +11,10 @@
 - 2011: [Supp 158: Retirement of General Purpose Worklist and Procedure Step](https://dicom.nema.org/medical/dicom/Final/sup158_ft.pdf)
 - 2014: [Supp 171: Unified Procedure Step by REpresentational State Transfer (REST) Services](https://dicom.nema.org/medical/dicom/Final/sup171_ft2.pdf)
 
+### Sample Use Case: Pull Workflow
+(Source: IHE Profile [AI Workflow for Imaging (AIW-I), Rev. 1.1 – 2020-08-06](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf#page33))
+![](img/aiw-i-pull-workflow.svg)
+
 ### [Unified Procedure Step IOD (Information Object Definition) Modules](https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_B.26.2.html)
 
 - [SOP Common Module](#sop-common-module)
@@ -87,12 +91,14 @@
 | Scheduled Procedure Step Expiration DateTime        | (0040,4008) | Date and time after which the Procedure Step is meaningless or undesirable.                                                         |
 | Input Readiness State                               | (0040,4034) | Readiness state of the Input Information Sequence (0040,4021) and the referenced Instances. `INCOMPLETE`, `UNAVAILABLE` or `READY`. |
 | Input Information Sequence                          | (0040,4021) | References to Information Objects needed to perform the scheduled Procedure Step.                                                   |
-| \>Type of Instances                                 | (0040,E020) | Type of object Instances referenced. `DICOM`, `CDA`, ..                                                                             |
+| \>Type of Instances                                 | (0040,E020) | Type of object Instances referenced. `DICOM`, `CDA`, `FHIR`, ..                                                                     |
 | \>Study Instance UID                                | (0020,000D) | Unique identifier for the Study.                                                                                                    |
 | \>Series Instance UID                               | (0020,000E) | Unique identifier for the Unique identifier for the Series that is part of the Study identified in Study Instance UID (0020,000D).  |
 | \>Referenced SOP Sequence                           | (0008,1199) | References to object Instances.                                                                                                     |
 | \>>Referenced SOP Class UID                         | (0008,1150) | Uniquely identifies the referenced SOP Class.                                                                                       |
 | \>>Referenced SOP Instance UID                      | (0008,1155) | Uniquely identifies the referenced SOP Instance.                                                                                    |
+| \>HL7 Instance Identifier                           | (0040,E001) | Instance Identifier of the encapsulated HL7 Structure Document.                                                                     |
+| \>FHIR Logical ID                                   | (XXXX,YYY3) | Logical ID of the referenced FHIR resource instance.                                                                                |
 | \>DICOM Retrieval Sequence                          | (0040,E021) | Details for retrieving Instances via the DICOM Retrieve Service.                                                                    |
 | \>>Retrieve AE Title                                | (0008,0054) | Title of a DICOM Application Entity where the referenced Instance(s) may be retrieved on the network.                               |
 | \>WADO Retrieval Sequence                           | (0040,E023) | Details for retrieving Instances available via WADO-URI.                                                                            |
@@ -101,6 +107,8 @@
 | \>>Repository Unique ID                             | (0040,E030) | Uniquely identifies a Repository from which the referenced Instances can be retrieved.                                              |
 | \>>Home Community ID                                | (0040,E031) | Uniquely identifies a Community to which requests for the referenced Instances can be directed.                                     |
 | \>WADO-RS Retrieval Sequence                        | (0040,E025) | Details for retrieving Instances via WADO-RS.                                                                                       |
+| \>>Retrieve URL                                     | (0008,1190) | URL specifying the location of the referenced Instance(s).                                                                          |
+| \>FHIR Retrieval Sequence                           | (XXXX,YYYY) | Details for retrieving Instances via FHIR.                                                                                       |
 | \>>Retrieve URL                                     | (0008,1190) | URL specifying the location of the referenced Instance(s).                                                                          |
 | Study Instance UID                                  | (0020,000D) | Unique Study identification that shall be used for the created Composite SOP Instances resulting from this Unified Procedure Step.  |
 | Output Destination Sequence                         | (0040,4070) | The destination to which the performer is requested to store the output objects generated.                                          |
@@ -160,12 +168,14 @@
 | \>Performed Procedure Step Start DateTime             | (0040,4050) | Date and Time at which the Procedure Step started.                                                                                 |
 | \>Performed Procedure Step End DateTime               | (0040,4051) | Date and Time at which the Procedure Step ended.                                                                                   |
 | \>Output Information Sequence                         | (0040,4033) | References to information created as part of the Procedure Step.                                                                   |
-| \>>Type of Instances                                  | (0040,E020) | Type of object Instances referenced. `DICOM`, `CDA`, ..                                                                            |
+| \>>Type of Instances                                  | (0040,E020) | Type of object Instances referenced. `DICOM`, `CDA`, `FHIR`. ..                                                                    |
 | \>>Study Instance UID                                 | (0020,000D) | Unique identifier for the Study.                                                                                                   |
 | \>>Series Instance UID                                | (0020,000E) | Unique identifier for the Unique identifier for the Series that is part of the Study identified in Study Instance UID (0020,000D). |
 | \>>Referenced SOP Sequence                            | (0008,1199) | References to object Instances.                                                                                                    |
 | \>>>Referenced SOP Class UID                          | (0008,1150) | Uniquely identifies the referenced SOP Class.                                                                                      |
 | \>>>Referenced SOP Instance UID                       | (0008,1155) | Uniquely identifies the referenced SOP Instance.                                                                                   |
+| \>>HL7 Instance Identifier                            | (0040,E001) | Instance Identifier of the encapsulated HL7 Structure Document.                                                                    |
+| \>>FHIR Logical ID                                    | (XXXX,YYY3) | Logical ID of the referenced FHIR resource instance.                                                                               |
 | \>>DICOM Retrieval Sequence                           | (0040,E021) | Details for retrieving Instances via the DICOM Retrieve Service.                                                                   |
 | \>>>Retrieve AE Title                                 | (0008,0054) | Title of a DICOM Application Entity where the referenced Instance(s) may be retrieved on the network.                              |
 | \>>WADO Retrieval Sequence                            | (0040,E023) | Details for retrieving Instances available via WADO-URI.                                                                           |
@@ -1412,19 +1422,4 @@ E.g.:
   - Transactions
     - RAD-130: Get Encounter Imaging Context (MWL or UPS-RS) with [mappings from MWL attributes to UPS attributes](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf#page=61).
 - [AI Workflow for Imaging (AIW-I), Rev. 1.1 – 2020-08-06](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
-  - Actors
-    - Task Requestor
-    - Task Manager
-    - Task Performer
-    - Watcher
-  - Transactions
-    - RAD-80: Create UPS Workitem (DIMSE or RESTful)
-    - RAD-81: Query UPS Workitems (DIMSE or RESTful)
-    - RAD-82: Claim UPS Workitem (DIMSE or RESTful)
-    - RAD-83: Get UPS Workitem (DIMSE or RESTful)
-    - RAD-84: Update UPS Workitem (DIMSE or RESTful)
-    - RAD-85: Complete UPS Workitem (DIMSE or RESTful)
-    - RAD-86: Manage UPS Subscription (DIMSE or RESTful)
-    - RAD-87: Send UPS Notification (DIMSE or RESTful)
-    - RAD-88: Request UPS Cancelation (DIMSE or RESTful)
-    - RAD-109: Open Event Channel (DIMSE or RESTful)
+  - Same Actors and Transactions as Radiology Remote Reading Workflow (RRR-WF)

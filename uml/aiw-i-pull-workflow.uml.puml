@@ -1,0 +1,30 @@
+@startuml
+participant "Image\nManager" as IM
+participant "Task\nRequestor" as REQ
+participant "Task\nManager" as ORC
+participant "Task\nPerformer" as PER
+REQ->ORC: Open Event Channel [RAD-109]
+REQ->ORC: Create Workitem [RAD-80]
+ORC-->REQ: Workitem UID
+ORC->ORC: assign\nWorkitem
+ORC->REQ: Send UPS Notification [RAD-87]\n(Workitem scheduled)
+par Step 3:Pull Workitem
+PER->ORC: Query UPS Workitem [RAD-81]
+activate PER
+ORC-->PER: Workitem UID
+PER->ORC: Get UPS Workitem [RAD-83]
+ORC-->PER: Workitem
+PER-> ORC: Claim UPS Workitem [RAD-82]
+ORC-->PER: Transaction UID
+ORC-> REQ: Send UPS Notification [RAD-87]\n(Workitem claimed)
+end
+PER->IM: Retrieve referenced input data using [RAD-107] or [RAD-16]
+IM-->PER:
+PER->PER: Perform inference
+PER->IM: Store AI Results with [RAD-108] or [RAD-43]
+PER->ORC: Update UPS Workitem [RAD-84]
+ORC->REQ: Send UPS Notification [RAD-87]\n(Progress Report)
+PER->ORC: Complete UPS Workitem [RAD-85]
+deactivate PER
+ORC->REQ: Send UPS Notification[RAD-87]\n(Workitem complete)
+@enduml
