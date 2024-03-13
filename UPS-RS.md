@@ -215,7 +215,7 @@ Defines 5 different SOP Classes bundling usage specific combinations of operatio
 | Change UPS State (N-ACTION) | M/M           |
 
 
-To take control of a `SCHEDULED` UPS, an SCU shall generate a Transaction UID and submit a state change to `IN PROGRESS`
+> To take control of a `SCHEDULED` UPS, an SCU shall generate a Transaction UID and submit a state change to `IN PROGRESS`
 including the Transaction UID in the submission. The SCU shall record and use the Transaction UID in future N-ACTION
 and N-SET requests for that UPS instance.
 
