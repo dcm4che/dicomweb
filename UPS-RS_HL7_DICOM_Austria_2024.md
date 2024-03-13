@@ -4,4 +4,4 @@
 - [Unified Procedure Step IOD (Information Object Definition) Modules](UPS-RS#unified-procedure-step-iod-information-object-definition-modules)
 - [Unified Procedure Step Service and SOP Classes (DIMSE Service)](UPS-RS#unified-procedure-step-service-and-sop-classes-dimse-service)
 - [Worklist Service and Resources (DICOMWeb)](UPS-RS#worklist-service-and-resources-dicomweb)
-- [IHE Profiles making use of UPS-RS](UPS-RS#ihe-profiles-making-use-of-ups-rs)
+- [IHE Profiles making use of UPS](UPS-RS#ihe-profiles-making-use-of-ups)

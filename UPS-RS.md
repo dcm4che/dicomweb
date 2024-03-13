@@ -828,7 +828,7 @@ EOF
 ```
 ```console
 $ curl -v -H 'Content-type: application/dicom+xml' -T claim-ups.xml http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/UPSSCU
-> PUT /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/performerAET HTTP/1.1
+> PUT /dcm4chee-arc/aets/WORKLIST/rs/workitems/1.2.3.4/state/UPSSCU HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.81.0
 > Accept: */*
@@ -1367,8 +1367,64 @@ E.g.:
 }
 ```
 
-### IHE Profiles making use of UPS-RS
-- [Encounter-Based Imaging Workflow (EBIW) for "Lightweight Modalities"](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
-- [AI Workflow for Imaging (AIW-I)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
-- [Post-Acquisition Workflow (PAWF)](https://www.ihe.net/Technical_Framework/upload/IHE_RAD_Suppl_PAWF_Rev1-1_TI_2012-06-15.pdf)
-- [Radiology Remote Reading Workflow (RRR-WF)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Supp_RRR-WF.pdf)
+### IHE Profiles making use of UPS
+- [Post-Acquisition Workflow (PAWF), Rev. 1.1 – 2012-06-15](https://www.ihe.net/Technical_Framework/upload/IHE_RAD_Suppl_PAWF_Rev1-1_TI_2012-06-15.pdf)
+  - Actors
+    - Workitem Creator
+    - Workitem Manager
+    - Workitem Performer
+    - Watcher
+  - Transactions
+    - RAD-80: Create UPS Workitem
+    - RAD-81: Query UPS Workitems
+    - RAD-82: Claim UPS Workitem
+    - RAD-83: Get UPS Workitem
+    - RAD-84: Update UPS Workitem
+    - RAD-85: Complete UPS Workitem
+    - RAD-86: Manage UPS Subscription
+    - RAD-87: Send UPS Notification
+    - RAD-88: Request UPS Cancelation
+- [Radiology Remote Reading Workflow (RRR-WF), Rev. 1.1 – 2015-12-14](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Supp_RRR-WF.pdf)
+  - Actors
+    - Task Requestor
+    - Task Manager
+    - Task Performer
+    - Watcher
+  - Transactions
+    - RAD-80: Create UPS Workitem (DIMSE or RESTful)
+    - RAD-81: Query UPS Workitems (DIMSE or RESTful)
+    - RAD-82: Claim UPS Workitem (DIMSE or RESTful)
+    - RAD-83: Get UPS Workitem (DIMSE or RESTful)
+    - RAD-84: Update UPS Workitem (DIMSE or RESTful)
+    - RAD-85: Complete UPS Workitem (DIMSE or RESTful)
+    - RAD-86: Manage UPS Subscription (DIMSE or RESTful)
+    - RAD-87: Send UPS Notification (DIMSE or RESTful)
+    - RAD-88: Request UPS Cancelation (DIMSE or RESTful)
+    - RAD-109: Open Event Channel (DIMSE or RESTful)
+- [Encounter-Based Imaging Workflow (EBIW), Rev. 2.1 – 2019-05-1](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
+  - >"Encounter-based Imaging" : The capture of medical images and associated data in the context of a patient
+    > encounter, such as an office visit. This is in contrast to Order-Based Imaging where imaging is captured
+    > in the context of an ordered procedure. Patient encounters can involve a patient going to a physician location,
+    > or a physician going to a patient location. Appointments represent anticipated encounters.
+  - Actors
+    - Encounter Manager
+    - Lightweight Modality
+  - Transactions
+    - RAD-130: Get Encounter Imaging Context (MWL or UPS-RS) with [mappings from MWL attributes to UPS attributes](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf#page=61).
+- [AI Workflow for Imaging (AIW-I), Rev. 1.1 – 2020-08-06](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIW-I.pdf)
+  - Actors
+    - Task Requestor
+    - Task Manager
+    - Task Performer
+    - Watcher
+  - Transactions
+    - RAD-80: Create UPS Workitem (DIMSE or RESTful)
+    - RAD-81: Query UPS Workitems (DIMSE or RESTful)
+    - RAD-82: Claim UPS Workitem (DIMSE or RESTful)
+    - RAD-83: Get UPS Workitem (DIMSE or RESTful)
+    - RAD-84: Update UPS Workitem (DIMSE or RESTful)
+    - RAD-85: Complete UPS Workitem (DIMSE or RESTful)
+    - RAD-86: Manage UPS Subscription (DIMSE or RESTful)
+    - RAD-87: Send UPS Notification (DIMSE or RESTful)
+    - RAD-88: Request UPS Cancelation (DIMSE or RESTful)
+    - RAD-109: Open Event Channel (DIMSE or RESTful)
