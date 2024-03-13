@@ -810,7 +810,7 @@ $ curl -vH 'Content-Type: application/dicom+xml' -d @update-ups.xml http://local
 ```
 #### [Change Workitem State](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.7)
 
-- [**`PUT {baseURL}/workitems/{workitem}/state/{requestor}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
+- [**`PUT {baseURL}/workitems/{workitem}/state/{performer}`**](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS/ChangeWorkitemState)
 
 with
 
