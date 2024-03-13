@@ -1,4 +1,4 @@
-## DICOMWeb Worklist Services (UPS-RS) - (HL7/DICOM Austria Jahrestagung 2024)
+## DICOMWeb Worklist Service (UPS-RS) - (HL7/DICOM Austria Jahrestagung 2024)
 
 - [Timeline of DICOM Specifications of Workflow Services](UPS-RS#timeline-of-dicom-specifications-of-workflow-services)
 - [Sample Use Case: Pull Workflow](UPS-RS#sample-use-case-pull-workflow)

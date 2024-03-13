@@ -2,7 +2,7 @@
 
 ### Timeline of DICOM Specifications of Workflow Services
 - 1993: [ACR-NEMA PS 3.4-1993: Detached Patient/Study/Results Management and Basic Study Content Notification Service Classes](https://dicom.nema.org/medical/dicom/1992-1995/PS3.4_1993.pdf)
-- 1993: [Supp 10: Basic Worklist Management - Modality](https://dicom.nema.org/medical/dicom/Final/sup09_ft.pdf)) 
+- 1993: [Supp 10: Basic Worklist Management - Modality](https://dicom.nema.org/medical/dicom/Final/sup09_ft.pdf)
 - 1996: [Supp 17: Modality Performed Procedure Step](https://dicom.nema.org/medical/dicom/Final/sup17_ft.pdf)
 - 2000: [Supp 52: General Purpose Worklist](https://dicom.nema.org/medical/dicom/Final/sup52_ft.pdf)
 - 2003: [Supp 93: Instance Availability Notification](https://dicom.nema.org/medical/dicom/Final/sup93_ft.pdf)
