@@ -803,11 +803,10 @@ $ curl -vH 'Content-Type: application/dicom+xml' -d @update-ups.xml http://local
 > User-Agent: curl/7.81.0
 > Accept: */*
 > Content-Type: application/dicom+xml
-> Content-Length: 2125
+> Content-Length: 1226
 > 
 
-< HTTP/1.1 201 Created
-< Location: http://localhost:8080/dcm4chee-arc/aets/WORKLIST/rs/workitems/2.25.68891579261869033145962963425485462514
+< HTTP/1.1 200 OK
 ```
 #### [Change Workitem State](https://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_11.7)
 
