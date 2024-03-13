@@ -1402,7 +1402,7 @@ E.g.:
     - RAD-88: Request UPS Cancelation (DIMSE or RESTful)
     - RAD-109: Open Event Channel (DIMSE or RESTful)
 - [Encounter-Based Imaging Workflow (EBIW), Rev. 2.1 – 2019-05-1](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
-  - >"Encounter-based Imaging" : The capture of medical images and associated data in the context of a patient
+  - >_Encounter-based Imaging_ : The capture of medical images and associated data in the context of a patient
     > encounter, such as an office visit. This is in contrast to Order-Based Imaging where imaging is captured
     > in the context of an ordered procedure. Patient encounters can involve a patient going to a physician location,
     > or a physician going to a patient location. Appointments represent anticipated encounters.
