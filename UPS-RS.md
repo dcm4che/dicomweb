@@ -935,12 +935,12 @@ $ curl -v -H 'Accept: multipart/related;type="application/dicom+xml"' http://loc
 Content-ID: <8b92a7b6-e986-4410-9b89-31739df4244c@resteasy-multipart>
 Content-Type: application/dicom+xml
 
-<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</<NativeDicomModel>
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</NativeDicomModel>
 --b6a6c4c0-adfd-40ea-a530-ad4683cb6e47
 Content-ID: <1e05cd68-3100-45c2-9281-0c833cc094ea@resteasy-multipart>
 Content-Type: application/dicom+xml
 
-<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</<NativeDicomModel>
+<?xml version="1.0" encoding="UTF-8"?><NativeDicomModel xml:space="preserve">...</NativeDicomModel>
 :
 --b6a6c4c0-adfd-40ea-a530-ad4683cb6e47--
 ```
