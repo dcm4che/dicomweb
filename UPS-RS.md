@@ -309,7 +309,7 @@ $ cat >> create-ups.xml << EOF
   <DicomAttribute keyword="AdmissionID" tag="00380010" vr="LO"/>
   <DicomAttribute keyword="IssuerOfAdmissionIDSequence" tag="00380014" vr="SQ"/>
   <DicomAttribute keyword="ScheduledProcedureStepStartDateTime" tag="00404005" vr="DT">
-    <Value number="1">20240311112739.303640</Value>
+    <Value number="1">20240312093000</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledWorkitemCodeSequence" tag="00404018" vr="SQ"/>
   <DicomAttribute keyword="InputInformationSequence" tag="00404021" vr="SQ"/>
@@ -405,7 +405,7 @@ $ cat >> create-ups.json << EOF
     "00404005": {
       "vr": "DT",
       "Value": [
-        "20240311112739.303640"
+        "20240312093000"
       ]
     },
     "00404018": {
@@ -550,7 +550,7 @@ $ curl -v -H 'Accept: application/dicom+xml' http://localhost:8080/dcm4chee-arc/
   <DicomAttribute keyword="AdmissionID" tag="00380010" vr="LO"/>
   <DicomAttribute keyword="IssuerOfAdmissionIDSequence" tag="00380014" vr="SQ"/>
   <DicomAttribute keyword="ScheduledProcedureStepStartDateTime" tag="00404005" vr="DT">
-    <Value number="1">20240311112739.303640</Value>
+    <Value number="1">20240312093000</Value>
   </DicomAttribute>
   <DicomAttribute keyword="ScheduledProcedureStepModificationDateTime" tag="00404010" vr="DT">
     <Value number="1">20240311112739.303640</Value>
@@ -655,7 +655,7 @@ $ curl -v -H 'Accept: application/dicom+json' http://localhost:8080/dcm4chee-arc
     "00404005": {
       "vr": "DT",
       "Value": [
-        "20240311112739.303640"
+        "20240312093000"
       ]
     },
     "00404010": {

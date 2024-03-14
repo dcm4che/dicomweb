@@ -1931,7 +1931,7 @@
         }
       }
     },
-    "/workitems/{workitem}/state/{requester}": {
+    "/workitems/{workitem}/state/{performer}": {
       "put": {
         "tags": [
           "UPS-RS"
@@ -1949,7 +1949,7 @@
             "$ref": "#/components/parameters/workitem"
           },
           {
-            "$ref": "#/components/parameters/requester"
+            "$ref": "#/components/parameters/performer"
           }
         ],
         "requestBody": {
@@ -1982,7 +1982,7 @@
         }
       }
     },
-    "/workitems/{workitem}/cancelrequest/{requester}": {
+    "/workitems/{workitem}/cancelrequest/{requestor}": {
       "post": {
         "tags": [
           "UPS-RS"
@@ -2000,7 +2000,7 @@
             "$ref": "#/components/parameters/workitem"
           },
           {
-            "$ref": "#/components/parameters/requester"
+            "$ref": "#/components/parameters/requestor"
           }
         ],
         "requestBody": {
@@ -2479,10 +2479,19 @@
           "type": "string"
         }
       },
-      "requester": {
-        "name": "requester",
+      "performer": {
+        "name": "performer",
         "in": "path",
-        "description": "AET of a Requester",
+        "description": "AET of the Performer, which claims/ed the Workitem",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "requestor": {
+        "name": "requestor",
+        "in": "path",
+        "description": "AET of the Requestor, which requests the Cancelation of the Workitem",
         "required": true,
         "schema": {
           "type": "string"

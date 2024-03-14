@@ -1,5 +1,5 @@
 ## DICOMWeb Worklist Service (UPS-RS) - (HL7/DICOM Austria Jahrestagung 2024)
-
+- [Swagger UI](https://petstore.swagger.io/index.html?url=https://dcm4che.github.io/dicomweb/openapi.json#/UPS-RS)
 - [Timeline of DICOM Specifications of Workflow Services](UPS-RS#timeline-of-dicom-specifications-of-workflow-services)
 - [Sample Use Case: Pull Workflow](UPS-RS#sample-use-case-pull-workflow)
 - [Unified Procedure Step IOD (Information Object Definition) Modules](UPS-RS#unified-procedure-step-iod-information-object-definition-modules)
