@@ -1395,21 +1395,21 @@ E.g.:
     - RAD-88: Request UPS Cancelation
 - [Radiology Remote Reading Workflow (RRR-WF), Rev. 1.1 – 2015-12-14](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Supp_RRR-WF.pdf)
   - Actors
-    - Task Requestor
-    - Task Manager
-    - Task Performer
+    - **Task** Requestor
+    - **Task** Manager
+    - **Task** Performer
     - Watcher
   - Transactions
-    - RAD-80: Create UPS Workitem (DIMSE or RESTful)
-    - RAD-81: Query UPS Workitems (DIMSE or RESTful)
-    - RAD-82: Claim UPS Workitem (DIMSE or RESTful)
-    - RAD-83: Get UPS Workitem (DIMSE or RESTful)
-    - RAD-84: Update UPS Workitem (DIMSE or RESTful)
-    - RAD-85: Complete UPS Workitem (DIMSE or RESTful)
-    - RAD-86: Manage UPS Subscription (DIMSE or RESTful)
-    - RAD-87: Send UPS Notification (DIMSE or RESTful)
-    - RAD-88: Request UPS Cancelation (DIMSE or RESTful)
-    - RAD-109: Open Event Channel (DIMSE or RESTful)
+    - RAD-80: Create UPS Workitem (DIMSE **or RESTful**)
+    - RAD-81: Query UPS Workitems (DIMSE **or RESTful**)
+    - RAD-82: Claim UPS Workitem (DIMSE **or RESTful**)
+    - RAD-83: Get UPS Workitem (DIMSE **or RESTful**)
+    - RAD-84: Update UPS Workitem (DIMSE **or RESTful**)
+    - RAD-85: Complete UPS Workitem (DIMSE **or RESTful**)
+    - RAD-86: Manage UPS Subscription (DIMSE **or RESTful**)
+    - RAD-87: Send UPS Notification (DIMSE **or WebSocket**)
+    - RAD-88: Request UPS Cancelation (DIMSE **or RESTful**)
+    - **RAD-109: Open Event Channel**
 - [Encounter-Based Imaging Workflow (EBIW), Rev. 2.1 – 2019-05-13](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_EBIW.pdf)
   - >_Encounter-based Imaging_ : The capture of medical images and associated data in the context of a patient
     > encounter, such as an office visit. This is in contrast to Order-Based Imaging where imaging is captured
